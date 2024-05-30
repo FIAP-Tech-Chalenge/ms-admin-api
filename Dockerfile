@@ -15,7 +15,7 @@ RUN if [ "$MAVEN_SKIP_TEST" = "true" ] ; then mvn clean package -DskipTests ; el
 # Segunda etapa: Rodar a aplicação
 FROM amazoncorretto:21-alpine-jdk
 
-LABEL maintainer="ricardo@ricardo.net"
+LABEL maintainer="ricardo@ricardolm.net"
 LABEL version="1.0"
 LABEL description="FIAP - Tech Chalenger"
 LABEL name="MS Admin API"
