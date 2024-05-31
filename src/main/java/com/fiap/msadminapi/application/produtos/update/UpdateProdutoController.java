@@ -1,7 +1,7 @@
-package com.fiap.msadminapi.application.controllers.admin.produtos.update;
+package com.fiap.msadminapi.application.produtos.update;
 
 
-import com.fiap.msadminapi.application.controllers.admin.produtos.update.requests.UpdateProdutoRequest;
+import com.fiap.msadminapi.application.produtos.update.requests.UpdateProdutoRequest;
 import com.fiap.msadminapi.application.response.GenericResponse;
 import com.fiap.msadminapi.application.response.PresenterResponse;
 import com.fiap.msadminapi.domain.generic.output.OutputInterface;

@@ -1,4 +1,4 @@
-package com.fiap.msadminapi.application.controllers.admin.produtos.delete;
+package com.fiap.msadminapi.application.produtos.delete;
 
 
 import com.fiap.msadminapi.application.response.GenericResponse;

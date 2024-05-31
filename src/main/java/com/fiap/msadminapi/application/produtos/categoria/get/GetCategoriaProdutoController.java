@@ -1,4 +1,4 @@
-package com.fiap.msadminapi.application.controllers.admin.produtos.all;
+package com.fiap.msadminapi.application.produtos.categoria.get;
 
 
 import com.fiap.msadminapi.application.response.GenericResponse;
@@ -6,7 +6,7 @@ import com.fiap.msadminapi.application.response.PresenterResponse;
 import com.fiap.msadminapi.domain.generic.output.OutputInterface;
 import com.fiap.msadminapi.domain.output.produto.BuscaTodosProdutoOutput;
 import com.fiap.msadminapi.domain.presenters.cliente.produto.GetProdutosPresenter;
-import com.fiap.msadminapi.domain.useCase.produto.BuscaTodosProdutosUseCase;
+import com.fiap.msadminapi.domain.useCase.produto.BuscaProdutoPorCategoriaUseCase;
 import com.fiap.msadminapi.infra.adpter.repository.produto.BuscarProdutoRepository;
 import com.fiap.msadminapi.infra.repository.ProdutoRepository;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,15 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("admin/produtos")
-public class AdminGetProdutosController {
+@RequestMapping("admin/produto")
+public class GetCategoriaProdutoController {
     private final ProdutoRepository produtoRepository;
 
-    @GetMapping
+    @GetMapping("/categoria/{categoria}")
     @Operation(tags = {"admin"})
-    public ResponseEntity<Object> getAllProdutos() {
-        BuscaTodosProdutosUseCase useCase = new BuscaTodosProdutosUseCase(new BuscarProdutoRepository(produtoRepository));
-        useCase.execute();
+    public ResponseEntity<Object> getProdutoPorCategoria(String categoria) {
+        BuscaProdutoPorCategoriaUseCase useCase = new BuscaProdutoPorCategoriaUseCase(new BuscarProdutoRepository(produtoRepository));
+        useCase.execute(categoria);
         OutputInterface outputInterface = useCase.getBuscaProdutoOutput();
 
         if (outputInterface.getOutputStatus().getCode() != 200) {

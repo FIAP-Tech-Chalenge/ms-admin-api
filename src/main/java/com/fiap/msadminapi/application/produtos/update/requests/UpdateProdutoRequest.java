@@ -1,4 +1,4 @@
-package com.fiap.msadminapi.application.controllers.admin.produtos.update.requests;
+package com.fiap.msadminapi.application.produtos.update.requests;
 
 import com.fiap.msadminapi.domain.enums.produto.CategoriaEnum;
 

@@ -1,14 +1,14 @@
-package com.fiap.msadminapi.application.controllers.admin.clientes;
+package com.fiap.msadminapi.application.produtos.categoria.get;
 
 
 import com.fiap.msadminapi.application.response.GenericResponse;
 import com.fiap.msadminapi.application.response.PresenterResponse;
 import com.fiap.msadminapi.domain.generic.output.OutputInterface;
-import com.fiap.msadminapi.domain.output.cliente.ClienteOutput;
-import com.fiap.msadminapi.domain.presenters.cliente.ClientePresenter;
-import com.fiap.msadminapi.domain.useCase.cliente.GetClienteByUuidUseCase;
-import com.fiap.msadminapi.infra.adpter.repository.cliente.ClienteEntityRepository;
-import com.fiap.msadminapi.infra.repository.ClienteRepository;
+import com.fiap.msadminapi.domain.output.produto.BuscaProdutoOutput;
+import com.fiap.msadminapi.domain.presenters.cliente.produto.GetProdutoPresenter;
+import com.fiap.msadminapi.domain.useCase.produto.BuscaProdutoPorUuidUseCase;
+import com.fiap.msadminapi.infra.adpter.repository.produto.BuscarProdutoRepository;
+import com.fiap.msadminapi.infra.repository.ProdutoRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,27 +21,21 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("admin/cliente")
-public class AdminGetClienteByUuidController {
-
-
-    private final ClienteRepository clienteRepository;
+@RequestMapping("admin/produto")
+public class GetProdutoController {
+    private final ProdutoRepository produtoRepository;
 
     @GetMapping("/{uuid}")
     @Operation(tags = {"admin"})
-    public ResponseEntity<Object> getClienteByUuid(@PathVariable UUID uuid) throws Exception {
-        GetClienteByUuidUseCase useCase = new GetClienteByUuidUseCase(new ClienteEntityRepository(this.clienteRepository));
+    public ResponseEntity<Object> getProduto(@PathVariable UUID uuid) {
+        BuscaProdutoPorUuidUseCase useCase = new BuscaProdutoPorUuidUseCase(new BuscarProdutoRepository(produtoRepository));
         useCase.execute(uuid);
-
-        OutputInterface outputInterface = useCase.getOutputInterface();
-
+        OutputInterface outputInterface = useCase.getBuscaProdutoOutput();
         if (outputInterface.getOutputStatus().getCode() != 200) {
             return new GenericResponse().response(outputInterface);
         }
 
-        ClientePresenter presenter = new ClientePresenter((ClienteOutput) outputInterface);
-
+        GetProdutoPresenter presenter = new GetProdutoPresenter((BuscaProdutoOutput) outputInterface);
         return new PresenterResponse().response(presenter);
     }
-
 }

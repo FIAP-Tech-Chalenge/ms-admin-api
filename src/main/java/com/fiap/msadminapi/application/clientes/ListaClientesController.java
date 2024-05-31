@@ -1,4 +1,4 @@
-package com.fiap.msadminapi.application.controllers.admin.clientes;
+package com.fiap.msadminapi.application.clientes;
 
 import com.fiap.msadminapi.application.response.GenericResponse;
 import com.fiap.msadminapi.application.response.PresenterResponse;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("admin/clientes")
-public class AdminListaClientesController {
+public class ListaClientesController {
     private final ClienteRepository clienteRepository;
 
     @GetMapping("/lista")

@@ -1,8 +1,8 @@
-package com.fiap.msadminapi.application.controllers.admin.produtos.store;
+package com.fiap.msadminapi.application.produtos.store;
 
 
-import com.fiap.msadminapi.application.controllers.admin.produtos.store.requests.ImagemItem;
-import com.fiap.msadminapi.application.controllers.admin.produtos.store.requests.StoreProdutoRequest;
+import com.fiap.msadminapi.application.produtos.store.requests.ImagemItem;
+import com.fiap.msadminapi.application.produtos.store.requests.StoreProdutoRequest;
 import com.fiap.msadminapi.application.response.GenericResponse;
 import com.fiap.msadminapi.application.response.PresenterResponse;
 import com.fiap.msadminapi.domain.entity.produto.Imagem;
