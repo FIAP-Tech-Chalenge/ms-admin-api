@@ -1,7 +1,7 @@
 package com.fiap.msadminapi.domain.gateway.produto;
 
-import com.fiap.msadminapi.domain.enums.produto.CategoriaEnum;
 import com.fiap.msadminapi.domain.entity.produto.Produto;
+import com.fiap.msadminapi.domain.enums.produto.CategoriaEnum;
 import com.fiap.msadminapi.domain.exception.produto.ProdutoNaoEncontradoException;
 
 import java.util.List;

@@ -1,7 +1,8 @@
 package com.fiap.msadminapi.domain.entity.cliente;
 
-import com.fiap.msadminapi.domain.entity.cliente.validation.IdentificaClienteValidation;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.UUID;
 
@@ -20,10 +21,5 @@ public class Cliente {
         this.cpf = cpf;
         this.email = email;
         this.uuid = uuid;
-    }
-    public Cliente identificarCliente() throws Exception {
-        Cliente cliente = new IdentificaClienteValidation().validaEntidade(this);
-        this.setUuid(getUuid());
-        return cliente;
     }
 }

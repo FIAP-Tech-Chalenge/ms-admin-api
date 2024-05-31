@@ -1,14 +1,15 @@
-package com.fiap.msadminapi.domain.presenters.cliente.identifica;
+package com.fiap.msadminapi.domain.presenters.cliente;
 
 import com.fiap.msadminapi.domain.generic.presenter.PresenterInterface;
+import com.fiap.msadminapi.domain.output.cliente.ClienteOutput;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class IdentificaClientePresenter implements PresenterInterface {
-    private final com.fiap.msadminapi.domain.output.cliente.ClienteOutput identificaClienteOutput;
+public class ClientePresenter implements PresenterInterface {
+    private final ClienteOutput identificaClienteOutput;
 
-    public IdentificaClientePresenter(com.fiap.msadminapi.domain.output.cliente.ClienteOutput identificaClienteOutput) {
+    public ClientePresenter(ClienteOutput identificaClienteOutput) {
         this.identificaClienteOutput = identificaClienteOutput;
     }
 
@@ -21,7 +22,7 @@ public class IdentificaClientePresenter implements PresenterInterface {
         return cliente;
     }
 
-    public com.fiap.msadminapi.domain.output.cliente.ClienteOutput getOutput() {
+    public ClienteOutput getOutput() {
         return this.identificaClienteOutput;
     }
 }

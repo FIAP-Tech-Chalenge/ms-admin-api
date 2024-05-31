@@ -5,7 +5,5 @@ import com.fiap.msadminapi.domain.exception.produto.ProdutoNaoEncontradoExceptio
 import java.util.UUID;
 
 public interface DeletarProdutoInterface {
-
     void deletaProduto(UUID uuid) throws ProdutoNaoEncontradoException;
-
 }

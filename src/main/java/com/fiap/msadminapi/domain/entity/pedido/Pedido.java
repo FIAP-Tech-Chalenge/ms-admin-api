@@ -58,10 +58,6 @@ public class Pedido {
         }
     }
 
-    public void gerarCombo() {
-
-    }
-
     public float valorTotalDoPedido() {
         float total = (float) 0;
         for (Produto produto : produtos) {

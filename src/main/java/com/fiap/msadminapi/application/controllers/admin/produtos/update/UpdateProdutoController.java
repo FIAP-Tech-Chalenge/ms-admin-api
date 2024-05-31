@@ -28,6 +28,17 @@ public class UpdateProdutoController {
     @PutMapping("/{uuid}")
     @Operation(tags = {"admin"})
     public ResponseEntity<Object> editaProduto(@PathVariable UUID uuid, @RequestBody UpdateProdutoRequest produtoRequest) {
+        EditaProdutoUseCase useCase = getEditaProdutoUseCase(uuid, produtoRequest);
+        OutputInterface outputInterface = useCase.getEditaProdutoOutput();
+        if (outputInterface.getOutputStatus().getCode() != 201) {
+            return new GenericResponse().response(outputInterface);
+        }
+
+        UpdateProdutoPresenter presenter = new UpdateProdutoPresenter((EditaProdutoOutput) outputInterface);
+        return new PresenterResponse().response(presenter);
+    }
+
+    private EditaProdutoUseCase getEditaProdutoUseCase(UUID uuid, UpdateProdutoRequest produtoRequest) {
         EditaProdutoInput produtoInput = new EditaProdutoInput(
                 produtoRequest.nome(),
                 produtoRequest.valor(),
@@ -41,12 +52,6 @@ public class UpdateProdutoController {
                 new BuscarProdutoRepository(produtoRepository)
         );
         useCase.execute(produtoInput, uuid);
-        OutputInterface outputInterface = useCase.getEditaProdutoOutput();
-        if (outputInterface.getOutputStatus().getCode() != 201) {
-            return new GenericResponse().response(outputInterface);
-        }
-
-        UpdateProdutoPresenter presenter = new UpdateProdutoPresenter((EditaProdutoOutput) outputInterface);
-        return new PresenterResponse().response(presenter);
+        return useCase;
     }
 }

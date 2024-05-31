@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 public class ListaDeClienteOutput implements OutputInterface {
-    private List<com.fiap.msadminapi.domain.entity.cliente.Cliente> clientes;
+    private List<Cliente> clientes;
     private OutputStatus outputStatus;
 
     public ListaDeClienteOutput(List<Cliente> clientes, OutputStatus outputStatus) {

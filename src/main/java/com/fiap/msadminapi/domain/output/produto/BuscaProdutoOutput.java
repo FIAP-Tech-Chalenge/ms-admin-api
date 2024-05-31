@@ -13,7 +13,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BuscaProdutoOutput implements OutputInterface {
-
     private Produto produto;
     private OutputStatus outputStatus;
 

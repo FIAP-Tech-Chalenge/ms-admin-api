@@ -1,15 +1,16 @@
 package com.fiap.msadminapi.domain.useCase.pedido;
 
 import com.fiap.msadminapi.domain.entity.pedido.Pedido;
+import com.fiap.msadminapi.domain.gateway.pedido.BuscaPedidoInterface;
 import com.fiap.msadminapi.domain.generic.output.OutputError;
 import com.fiap.msadminapi.domain.generic.output.OutputInterface;
 import com.fiap.msadminapi.domain.generic.output.OutputStatus;
 import com.fiap.msadminapi.domain.output.pedido.BuscaTodosPedidoOutput;
-import com.fiap.msadminapi.domain.gateway.pedido.BuscaPedidoInterface;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+
 @Getter
 @RequiredArgsConstructor
 public class BuscaTodosPedidosUseCase {

@@ -24,9 +24,8 @@ public class CriaProdutoUseCase {
             Produto produto;
             produto = new Produto(criarProdutoInput.nome(), criarProdutoInput.valor(), criarProdutoInput.descricao(), criarProdutoInput.categoria(), criarProdutoInput.quantidade()).criaProduto();
             produto.setImagens(criarProdutoInput.imagens());
-            this.criaProdutoRepository.criaProduto(produto);
             this.criaProdutoOutput = new CriaProdutoOutput(
-                    produto,
+                    this.criaProdutoRepository.criaProduto(produto),
                     new OutputStatus(201, "Created", "Produto criado")
             );
 

@@ -40,6 +40,16 @@ public class StoreProdutoController {
             imagens.add(new Imagem(imagemItem.nome(), imagemItem.url()));
         }
 
+        OutputInterface outputInterface = getOutputInterface(criarProdutoRequest, imagens);
+        if (outputInterface.getOutputStatus().getCode() != 201) {
+            return new GenericResponse().response(outputInterface);
+        }
+
+        StoreProdutoPresenter presenter = new StoreProdutoPresenter((CriaProdutoOutput) outputInterface);
+        return new PresenterResponse().response(presenter);
+    }
+
+    private OutputInterface getOutputInterface(StoreProdutoRequest criarProdutoRequest, List<Imagem> imagens) {
         CriarProdutoInput criarProdutoInput = new CriarProdutoInput(
                 criarProdutoRequest.nome(),
                 criarProdutoRequest.valor(),
@@ -51,12 +61,6 @@ public class StoreProdutoController {
         );
         CriaProdutoUseCase useCase = new CriaProdutoUseCase(new CriaProtutoRepository(produtoRepository, produtoImagensRepository));
         useCase.execute(criarProdutoInput);
-        OutputInterface outputInterface = useCase.getCriaProdutoOutput();
-        if (outputInterface.getOutputStatus().getCode() != 201) {
-            return new GenericResponse().response(outputInterface);
-        }
-
-        StoreProdutoPresenter presenter = new StoreProdutoPresenter((CriaProdutoOutput) outputInterface);
-        return new PresenterResponse().response(presenter);
+        return useCase.getCriaProdutoOutput();
     }
 }

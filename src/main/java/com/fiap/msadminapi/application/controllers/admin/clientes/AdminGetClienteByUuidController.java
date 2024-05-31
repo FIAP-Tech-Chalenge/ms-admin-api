@@ -4,7 +4,8 @@ package com.fiap.msadminapi.application.controllers.admin.clientes;
 import com.fiap.msadminapi.application.response.GenericResponse;
 import com.fiap.msadminapi.application.response.PresenterResponse;
 import com.fiap.msadminapi.domain.generic.output.OutputInterface;
-import com.fiap.msadminapi.domain.presenters.cliente.identifica.IdentificaClientePresenter;
+import com.fiap.msadminapi.domain.output.cliente.ClienteOutput;
+import com.fiap.msadminapi.domain.presenters.cliente.ClientePresenter;
 import com.fiap.msadminapi.domain.useCase.cliente.GetClienteByUuidUseCase;
 import com.fiap.msadminapi.infra.adpter.repository.cliente.ClienteEntityRepository;
 import com.fiap.msadminapi.infra.repository.ClienteRepository;
@@ -38,7 +39,7 @@ public class AdminGetClienteByUuidController {
             return new GenericResponse().response(outputInterface);
         }
 
-        IdentificaClientePresenter presenter = new IdentificaClientePresenter((com.fiap.msadminapi.domain.output.cliente.ClienteOutput) outputInterface);
+        ClientePresenter presenter = new ClientePresenter((ClienteOutput) outputInterface);
 
         return new PresenterResponse().response(presenter);
     }

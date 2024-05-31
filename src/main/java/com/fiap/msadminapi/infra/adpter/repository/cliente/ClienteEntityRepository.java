@@ -1,7 +1,6 @@
 package com.fiap.msadminapi.infra.adpter.repository.cliente;
 
-import com.fiap.msadminapi.domain.entity.pedido.Cliente;
-import com.fiap.msadminapi.domain.exception.pedido.ClienteNaoEncontradoException;
+import com.fiap.msadminapi.domain.entity.cliente.Cliente;
 import com.fiap.msadminapi.domain.gateway.cliente.ClienteInterface;
 import com.fiap.msadminapi.infra.model.ClienteModel;
 import com.fiap.msadminapi.infra.repository.ClienteRepository;
@@ -16,25 +15,11 @@ public class ClienteEntityRepository implements ClienteInterface {
     private final ClienteRepository clienteRepository;
 
     @Override
-    public Cliente buscaClientePorUuid(UUID uuid) throws ClienteNaoEncontradoException {
-        ClienteModel clienteModel = clienteRepository.findByUuid(uuid);
-        if (clienteModel == null) {
-            throw new ClienteNaoEncontradoException("Cliente não encontrado");
-        }
-        return new Cliente(
-                clienteModel.getNome(),
-                clienteModel.getCpf(),
-                clienteModel.getEmail(),
-                clienteModel.getUuid()
-        );
-    }
-
-    @Override
-    public List<com.fiap.msadminapi.domain.entity.cliente.Cliente> buscarClientes() {
+    public List<Cliente> buscarClientes() {
         List<ClienteModel> clientesModels = clienteRepository.findAll();
-        List<com.fiap.msadminapi.domain.entity.cliente.Cliente> clienteList = new ArrayList<>();
+        List<Cliente> clienteList = new ArrayList<>();
         for (ClienteModel clienteModel : clientesModels) {
-            com.fiap.msadminapi.domain.entity.cliente.Cliente pedidoEntity = new com.fiap.msadminapi.domain.entity.cliente.Cliente(
+            Cliente pedidoEntity = new Cliente(
                     clienteModel.getNome(),
                     clienteModel.getCpf(),
                     clienteModel.getEmail(),
@@ -46,12 +31,12 @@ public class ClienteEntityRepository implements ClienteInterface {
     }
 
     @Override
-    public com.fiap.msadminapi.domain.entity.cliente.Cliente getClienteByUuid(UUID uuid) {
+    public Cliente getClienteByUuid(UUID uuid) {
         ClienteModel clienteModel = clienteRepository.findByUuid(uuid);
         if (clienteModel == null) {
             return null;
         }
-        return new com.fiap.msadminapi.domain.entity.cliente.Cliente(
+        return new Cliente(
                 clienteModel.getNome(),
                 clienteModel.getCpf(),
                 clienteModel.getEmail(),

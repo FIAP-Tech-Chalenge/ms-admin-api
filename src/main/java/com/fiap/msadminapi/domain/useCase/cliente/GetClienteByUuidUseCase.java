@@ -6,6 +6,7 @@ import com.fiap.msadminapi.domain.gateway.cliente.ClienteInterface;
 import com.fiap.msadminapi.domain.generic.output.OutputError;
 import com.fiap.msadminapi.domain.generic.output.OutputInterface;
 import com.fiap.msadminapi.domain.generic.output.OutputStatus;
+import com.fiap.msadminapi.domain.output.cliente.ClienteOutput;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -25,7 +26,7 @@ public class GetClienteByUuidUseCase {
                 throw new ClienteNaoEncontradoException("Cliente não encontrado");
             }
 
-            this.outputInterface = new com.fiap.msadminapi.domain.output.cliente.ClienteOutput(
+            this.outputInterface = new ClienteOutput(
                     clienteBusca,
                     new OutputStatus(200, "Ok", "Cliente encontrado")
             );

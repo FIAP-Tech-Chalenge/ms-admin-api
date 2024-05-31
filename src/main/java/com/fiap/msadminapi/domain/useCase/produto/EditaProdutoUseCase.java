@@ -2,13 +2,13 @@ package com.fiap.msadminapi.domain.useCase.produto;
 
 import com.fiap.msadminapi.domain.entity.produto.Produto;
 import com.fiap.msadminapi.domain.exception.produto.ProdutoNaoEncontradoException;
+import com.fiap.msadminapi.domain.gateway.produto.BuscaProdutoInterface;
+import com.fiap.msadminapi.domain.gateway.produto.EditaProdutoInterface;
 import com.fiap.msadminapi.domain.generic.output.OutputError;
 import com.fiap.msadminapi.domain.generic.output.OutputInterface;
 import com.fiap.msadminapi.domain.generic.output.OutputStatus;
 import com.fiap.msadminapi.domain.input.produto.EditaProdutoInput;
 import com.fiap.msadminapi.domain.output.produto.EditaProdutoOutput;
-import com.fiap.msadminapi.domain.gateway.produto.BuscaProdutoInterface;
-import com.fiap.msadminapi.domain.gateway.produto.EditaProdutoInterface;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

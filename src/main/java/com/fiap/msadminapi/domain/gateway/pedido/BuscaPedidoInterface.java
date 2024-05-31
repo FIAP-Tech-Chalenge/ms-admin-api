@@ -8,10 +8,7 @@ import java.util.UUID;
 
 
 public interface BuscaPedidoInterface {
-
     Pedido encontraPedidoPorUuid(UUID pedidoUuid, UUID clienteUuid) throws PedidoNaoEncontradoException;
 
     List<Pedido> findAll();
-
-
 }

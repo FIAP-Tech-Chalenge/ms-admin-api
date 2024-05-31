@@ -19,6 +19,20 @@ public class CriaProtutoRepository implements CriarProdutoInterface {
     private final ProdutoRepository produtoRepository;
     private final ProdutoImagensRepository produtoImagemRepository;
 
+    private static List<ProdutoImagemModel> getProdutoImagemModels(Produto produto) {
+        List<ProdutoImagemModel> produtoImagens = new ArrayList<>();
+        for (Imagem imagemEntity : produto.getImagens()) {
+            String nome = imagemEntity.nome();
+            String url = imagemEntity.url();
+            ProdutoImagemModel produtoImagem = new ProdutoImagemModel();
+            produtoImagem.setProdutoUuid(produto.getUuid());
+            produtoImagem.setNome(nome);
+            produtoImagem.setUrl(url);
+            produtoImagens.add(produtoImagem);
+        }
+        return produtoImagens;
+    }
+
     @Override
     public Produto criaProduto(Produto produto) {
         ProdutoModel produtoModel = this.produtoRepository.save(
@@ -33,16 +47,7 @@ public class CriaProtutoRepository implements CriarProdutoInterface {
         );
         produto.setUuid(produtoModel.getUuid());
         if (produto.getImagens() != null && !produto.getImagens().isEmpty()) {
-            List<ProdutoImagemModel> produtoImagens = new ArrayList<>();
-            for (Imagem imagemEntity : produto.getImagens()) {
-                String nome = imagemEntity.nome();
-                String url = imagemEntity.url();
-                ProdutoImagemModel produtoImagem = new ProdutoImagemModel();
-                produtoImagem.setProdutoUuid(produto.getUuid());
-                produtoImagem.setNome(nome);
-                produtoImagem.setUrl(url);
-                produtoImagens.add(produtoImagem);
-            }
+            List<ProdutoImagemModel> produtoImagens = getProdutoImagemModels(produto);
             produtoImagemRepository.saveAll(produtoImagens);
             produto.setImagens(produto.getImagens());
         }
