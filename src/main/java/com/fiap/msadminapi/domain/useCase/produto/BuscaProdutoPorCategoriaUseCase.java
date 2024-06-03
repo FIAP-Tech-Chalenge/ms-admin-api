@@ -30,11 +30,7 @@ public class BuscaProdutoPorCategoriaUseCase {
 
             List<Produto> listProdutos = this.produtoRepository.encontraProdutoPorCategoria(categoriaEnum);
 
-            if (listProdutos == null || listProdutos.isEmpty()) {
-                throw new ProdutoNaoEncontradoException("Nenhum Produto na categoria encontrado");
-            }
-
-            buscaProdutoOutput = new BuscaTodosProdutoOutput(
+            this.buscaProdutoOutput = new BuscaTodosProdutoOutput(
                     listProdutos,
                     new OutputStatus(200, "OK", "Lista de produtos")
             );
@@ -50,7 +46,7 @@ public class BuscaProdutoPorCategoriaUseCase {
                     new OutputStatus(400, "Bad request", e.getMessage())
             );
         } catch (Exception e) {
-            buscaProdutoOutput = new OutputError(
+            this.buscaProdutoOutput = new OutputError(
                     e.getMessage(),
                     new OutputStatus(500, "Internal Server Error", "Erro no servidor")
             );

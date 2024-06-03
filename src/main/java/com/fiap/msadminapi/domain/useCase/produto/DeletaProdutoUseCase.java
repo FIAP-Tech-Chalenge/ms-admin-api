@@ -2,6 +2,7 @@ package com.fiap.msadminapi.domain.useCase.produto;
 
 
 import com.fiap.msadminapi.domain.entity.produto.Produto;
+import com.fiap.msadminapi.domain.enums.produto.CategoriaEnum;
 import com.fiap.msadminapi.domain.exception.produto.ProdutoNaoEncontradoException;
 import com.fiap.msadminapi.domain.gateway.produto.BuscaProdutoInterface;
 import com.fiap.msadminapi.domain.gateway.produto.DeletarProdutoInterface;

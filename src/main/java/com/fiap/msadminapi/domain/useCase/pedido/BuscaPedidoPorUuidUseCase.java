@@ -39,7 +39,7 @@ public class BuscaPedidoPorUuidUseCase {
         } catch (PedidoNaoEncontradoException e) {
             this.buscaPedidoOutput = new OutputError(
                     e.getMessage(),
-                    new OutputStatus(404, "Not Found", "Produto não encontrado")
+                    new OutputStatus(404, "Not Found", "Pedido não encontrado")
             );
         } catch (Exception e) {
             this.buscaPedidoOutput = new OutputError(

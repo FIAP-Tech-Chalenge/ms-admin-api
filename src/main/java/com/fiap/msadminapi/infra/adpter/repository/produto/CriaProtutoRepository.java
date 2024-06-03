@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @RequiredArgsConstructor
@@ -35,17 +36,16 @@ public class CriaProtutoRepository implements CriarProdutoInterface {
 
     @Override
     public Produto criaProduto(Produto produto) {
-        ProdutoModel produtoModel = this.produtoRepository.save(
-                new ProdutoModel(
-                        produto.getUuid(),
-                        produto.getNome(),
-                        produto.getValor(),
-                        produto.getDescricao(),
-                        produto.getCategoria(),
-                        produto.getQuantidade()
-                )
+        var uuid = UUID.randomUUID();
+        ProdutoModel produtoModel = new ProdutoModel(
+                uuid,
+                produto.getNome(),
+                produto.getValor(),
+                produto.getDescricao(),
+                produto.getCategoria(),
+                produto.getQuantidade()
         );
-        produto.setUuid(produtoModel.getUuid());
+        this.produtoRepository.save(produtoModel);
         if (produto.getImagens() != null && !produto.getImagens().isEmpty()) {
             List<ProdutoImagemModel> produtoImagens = getProdutoImagemModels(produto);
             produtoImagemRepository.saveAll(produtoImagens);
