@@ -1,7 +1,6 @@
-package com.fiap.msadminapi.infra.adpter.repository;
+package com.fiap.msadminapi.infra.adpter.repository.produto;
 
 import com.fiap.msadminapi.domain.enums.produto.CategoriaEnum;
-import com.fiap.msadminapi.infra.adpter.repository.produto.DeletaProdutoRepository;
 import com.fiap.msadminapi.infra.model.ProdutoModel;
 import com.fiap.msadminapi.infra.repository.ProdutoRepository;
 

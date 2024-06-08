@@ -1,10 +1,8 @@
-package com.fiap.msadminapi.infra.adpter.repository;
+package com.fiap.msadminapi.infra.adpter.repository.produto;
 
 import com.fiap.msadminapi.domain.entity.produto.Produto;
 import com.fiap.msadminapi.domain.enums.produto.CategoriaEnum;
 import com.fiap.msadminapi.domain.exception.produto.ProdutoNaoEncontradoException;
-import com.fiap.msadminapi.domain.useCase.produto.EditaProdutoUseCase;
-import com.fiap.msadminapi.infra.adpter.repository.produto.EditaProdutoRepository;
 import com.fiap.msadminapi.infra.model.ProdutoModel;
 import com.fiap.msadminapi.infra.repository.ProdutoRepository;
 import org.assertj.core.api.Assertions;

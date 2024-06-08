@@ -13,6 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CriaProdutoOutput implements OutputInterface {
+
     private Produto produto;
     private OutputStatus outputStatus;
 

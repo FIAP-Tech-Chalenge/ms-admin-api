@@ -55,7 +55,7 @@ public class BuscarPedidoRepository implements BuscaPedidoInterface {
         if (pedidoModel == null) {
             return null;
         }
-        if (!pedidoModel.getClienteId().equals(clienteUuid) && clienteUuid != null) {
+        if (!pedidoModel.getClienteId().equals(clienteUuid) || clienteUuid == null) {
             return null;
         }
         List<PedidoProdutoModel> pedidosDoProduto = pedidoProdutoRepository.findPedidoProdutoModelsByPedidoUuid(pedidoModel.getUuid());

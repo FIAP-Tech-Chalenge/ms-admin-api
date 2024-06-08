@@ -4,7 +4,6 @@ import com.fiap.msadminapi.domain.entity.pedido.Pedido;
 import com.fiap.msadminapi.domain.exception.pedido.PedidoNaoEncontradoException;
 import com.fiap.msadminapi.domain.gateway.pedido.BuscaPedidoInterface;
 import com.fiap.msadminapi.domain.generic.output.OutputStatus;
-import com.fiap.msadminapi.domain.outputerror.BuscarPedidoOutputError;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

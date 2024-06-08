@@ -1,16 +1,12 @@
-package com.fiap.msadminapi.infra.adpter.repository;
+package com.fiap.msadminapi.infra.adpter.repository.produto;
 
 import com.fiap.msadminapi.domain.entity.produto.Imagem;
 import com.fiap.msadminapi.domain.entity.produto.Produto;
 import com.fiap.msadminapi.domain.enums.produto.CategoriaEnum;
-import com.fiap.msadminapi.domain.exception.produto.ProdutoNaoEncontradoException;
-import com.fiap.msadminapi.infra.adpter.repository.produto.CriaProtutoRepository;
-import com.fiap.msadminapi.infra.adpter.repository.produto.DeletaProdutoRepository;
+import com.fiap.msadminapi.domain.gateway.pedido.BuscaPedidoInterface;
 import com.fiap.msadminapi.infra.model.ProdutoModel;
-import com.fiap.msadminapi.infra.repository.ClienteRepository;
 import com.fiap.msadminapi.infra.repository.ProdutoImagensRepository;
 import com.fiap.msadminapi.infra.repository.ProdutoRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -64,7 +60,7 @@ public class CriaProtutoRepositoryTest {
     void devePermitirCriarProdutoSemImagem() {
         var produto = new Produto("Produto 3", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 2);
         var produtoModel = new ProdutoModel(UUID.randomUUID(), "Produto 3", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
-
+        produto.setImagens(Arrays.asList());
         when(produtoRepository.save(produtoModel)).thenReturn(produtoModel);
 
         var produtoRecebido = criaProtutoRepository.criaProduto(produto);

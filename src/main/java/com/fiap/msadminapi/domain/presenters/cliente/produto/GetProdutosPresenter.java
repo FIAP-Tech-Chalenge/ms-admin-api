@@ -32,7 +32,7 @@ public class GetProdutosPresenter implements PresenterInterface {
             produtosMapList.add(pedidoMap);
         }
 
-        map.put("pedidos", produtosMapList);
+        map.put("produtos", produtosMapList);
 
         return map;
     }
