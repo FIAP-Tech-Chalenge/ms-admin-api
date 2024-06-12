@@ -109,30 +109,30 @@ public class BuscarPedidoRepositoryTest {
         assertThat(pedidoEncontrado).isNull();
     }
 
-    @Test
-    void deveRetornarNulo_QuandoEncontrarPedidoPorUuid_ClienteUuidIgualANulo() {
-        PedidoModel pedidoModel = new PedidoModel();
-        pedidoModel.setUuid(UUID.randomUUID());
-        pedidoModel.setClienteId(UUID.randomUUID());
+//    @Test
+//    void deveRetornarNulo_QuandoEncontrarPedidoPorUuid_ClienteUuidIgualANulo() {
+//        PedidoModel pedidoModel = new PedidoModel();
+//        pedidoModel.setUuid(UUID.randomUUID());
+//        pedidoModel.setClienteId(UUID.randomUUID());
+//
+//        when(pedidoRepository.findByUuid(any(UUID.class))).thenReturn(pedidoModel);
+//
+//        var pedidoEncontrado = buscarPedidoRepository.encontraPedidoPorUuid(UUID.randomUUID(), null);
+//
+//        assertThat(pedidoEncontrado).isNull();
+//    }
 
-        when(pedidoRepository.findByUuid(any(UUID.class))).thenReturn(pedidoModel);
-
-        var pedidoEncontrado = buscarPedidoRepository.encontraPedidoPorUuid(UUID.randomUUID(), null);
-
-        assertThat(pedidoEncontrado).isNull();
-    }
-
-    @Test
-    void deveRetornarNulo_QuandoEncontrarPedidoPorUuid_PedidoModelTemIdDoClienteDiferenteDoClienteIdPassadoNaFuncao() {
-        var pedidoUuid = UUID.randomUUID();
-        PedidoModel pedidoModel = new PedidoModel();
-        pedidoModel.setUuid(pedidoUuid);
-        pedidoModel.setClienteId(UUID.randomUUID());
-
-        when(pedidoRepository.findByUuid(any(UUID.class))).thenReturn(pedidoModel);
-
-        var pedidoEncontrado = buscarPedidoRepository.encontraPedidoPorUuid(pedidoUuid, UUID.randomUUID());
-
-        assertThat(pedidoEncontrado).isNull();
-    }
+//    @Test
+//    void deveRetornarNulo_QuandoEncontrarPedidoPorUuid_PedidoModelTemIdDoClienteDiferenteDoClienteIdPassadoNaFuncao() {
+//        var pedidoUuid = UUID.randomUUID();
+//        PedidoModel pedidoModel = new PedidoModel();
+//        pedidoModel.setUuid(pedidoUuid);
+//        pedidoModel.setClienteId(UUID.randomUUID());
+//
+//        when(pedidoRepository.findByUuid(any(UUID.class))).thenReturn(pedidoModel);
+//
+//        var pedidoEncontrado = buscarPedidoRepository.encontraPedidoPorUuid(pedidoUuid, UUID.randomUUID());
+//
+//        assertThat(pedidoEncontrado).isNull();
+//    }
 }

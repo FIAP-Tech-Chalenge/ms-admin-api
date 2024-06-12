@@ -53,7 +53,7 @@ public class ListaClientesControllerTest {
     }
 
     @Test
-    void deveRetornarOPresenter() {
+    void deveRetornarOPresenterCorreto() {
         var cliente = new Cliente();
         cliente.setNome("Cliente 1");
 
