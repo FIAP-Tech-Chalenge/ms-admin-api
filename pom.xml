@@ -107,6 +107,13 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <excludes>
+                        <exclude>com/fiap/msadminapi/domain/output/**/*</exclude>
+                        <exclude>com/fiap/msadminapi/domain/outputerror/*</exclude>
+                        <exclude>com/fiap/msadminapi/infra/dependency/**/*</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
