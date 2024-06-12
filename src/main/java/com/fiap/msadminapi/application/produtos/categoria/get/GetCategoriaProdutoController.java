@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +25,7 @@ public class GetCategoriaProdutoController {
 
     @GetMapping("/categoria/{categoria}")
     @Operation(tags = {"admin"})
-    public ResponseEntity<Object> getProdutoPorCategoria(String categoria) {
+    public ResponseEntity<Object> getProdutoPorCategoria(@PathVariable String categoria) {
         BuscaProdutoPorCategoriaUseCase useCase = new BuscaProdutoPorCategoriaUseCase(new BuscarProdutoRepository(produtoRepository));
         useCase.execute(categoria);
         OutputInterface outputInterface = useCase.getBuscaProdutoOutput();
