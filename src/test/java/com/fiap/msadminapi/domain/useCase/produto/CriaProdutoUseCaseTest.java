@@ -40,12 +40,12 @@ public class CriaProdutoUseCaseTest {
 
     AutoCloseable openMocks;
 
-    @BeforeEach
-    void setup(){
-        openMocks = MockitoAnnotations.openMocks(this);
-        criarProdutoRepository = new CriaProtutoRepository(produtoRepository, produtoImagensRepository);
-        useCase = new CriaProdutoUseCase(criarProdutoRepository);
-    }
+//    @BeforeEach
+//    void setup(){
+//        openMocks = MockitoAnnotations.openMocks(this);
+//        criarProdutoRepository = new CriaProtutoRepository(produtoRepository, produtoImagensRepository);
+//        useCase = new CriaProdutoUseCase(criarProdutoRepository);
+//    }
 
     @AfterEach
     void tearDown() throws Exception {

@@ -53,7 +53,7 @@ public class StoreProdutoControllerTest {
     }
 
     @Test
-    void deveRetornarOPresenterCorreto() {
+    void deveRetornarOPresenterCorreto() throws Exception {
         var nome = "Produto 1";
         var valor = Float.parseFloat("17.9");
         var descricao = "";

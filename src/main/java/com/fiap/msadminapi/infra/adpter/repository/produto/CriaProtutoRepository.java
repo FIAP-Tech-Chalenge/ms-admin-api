@@ -36,7 +36,7 @@ public class CriaProtutoRepository implements CriarProdutoInterface {
 
     @Override
     public Produto criaProduto(Produto produto) {
-        var uuid = UUID.randomUUID();
+        UUID uuid = UUID.randomUUID();
         ProdutoModel produtoModel = new ProdutoModel(
                 uuid,
                 produto.getNome(),
