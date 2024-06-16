@@ -39,11 +39,11 @@ public class StoreProdutoController {
 
     @PostMapping
     @Operation(tags = {"admin"})
-    public ResponseEntity<Object> criaProduto(@RequestBody StoreProdutoRequest criarProdutoRequest) throws Exception {
+    public ResponseEntity<Object> criaProduto(@RequestBody StoreProdutoRequest criarProdutoRequest) {
         List<Imagem> imagens = new ArrayList<>();
 
         for (ImagemItem imagemItem : criarProdutoRequest.imagens()) {
-            imagens.add(new Imagem(imagemItem.nome(), imagemItem.url()));
+            imagens.add(new Imagem(imagemItem.uuid(), imagemItem.nome(), imagemItem.url()));
         }
 
         OutputInterface outputInterface = getOutputInterface(criarProdutoRequest, imagens);

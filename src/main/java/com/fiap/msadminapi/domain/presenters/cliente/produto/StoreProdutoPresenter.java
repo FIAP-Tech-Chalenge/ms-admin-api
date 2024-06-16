@@ -1,8 +1,8 @@
 package com.fiap.msadminapi.domain.presenters.cliente.produto;
 
-import com.fiap.msadminapi.domain.entity.produto.Imagem;
 import com.fiap.msadminapi.domain.generic.presenter.PresenterInterface;
 import com.fiap.msadminapi.domain.output.produto.CriaProdutoOutput;
+import com.fiap.msadminapi.infra.model.ImagemModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,10 +25,10 @@ public class StoreProdutoPresenter implements PresenterInterface {
         array.put("categoria", this.criaProdutoOutput.getProduto().getCategoria());
         array.put("quantidade", this.criaProdutoOutput.getProduto().getQuantidade());
         List<Map<String, Object>> produtoImagensMapList = new ArrayList<>();
-        for (Imagem imagem : this.criaProdutoOutput.getProduto().getImagens()) {
+        for (ImagemModel imagem : this.criaProdutoOutput.getProduto().getImagens()) {
             Map<String, Object> produtoImagemMap = new HashMap<>();
-            produtoImagemMap.put("nome", imagem.nome());
-            produtoImagemMap.put("url", imagem.url());
+            produtoImagemMap.put("nome", imagem.getNome());
+            produtoImagemMap.put("url", imagem.getUrl());
             produtoImagensMapList.add(produtoImagemMap);
         }
         array.put("imagens", produtoImagensMapList);

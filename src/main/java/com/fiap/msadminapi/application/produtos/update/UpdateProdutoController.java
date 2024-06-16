@@ -45,7 +45,8 @@ public class UpdateProdutoController {
                 produtoRequest.descricao(),
                 produtoRequest.categoria(),
                 produtoRequest.quantidade(),
-                produtoRequest.dataCriacao()
+                produtoRequest.dataCriacao(),
+                produtoRequest.imagens()
         );
         EditaProdutoUseCase useCase = new EditaProdutoUseCase(
                 new EditaProdutoRepository(produtoRepository),

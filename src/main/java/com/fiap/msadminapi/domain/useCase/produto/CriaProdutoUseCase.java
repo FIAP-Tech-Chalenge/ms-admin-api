@@ -11,8 +11,12 @@ import com.fiap.msadminapi.domain.generic.output.OutputStatus;
 import com.fiap.msadminapi.domain.generic.output.ProdutoOutput;
 import com.fiap.msadminapi.domain.input.produto.CriarProdutoInput;
 import com.fiap.msadminapi.domain.output.produto.CriaProdutoOutput;
+import com.fiap.msadminapi.infra.model.ImagemModel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @RequiredArgsConstructor
@@ -24,9 +28,19 @@ public class CriaProdutoUseCase {
 
     public void execute(CriarProdutoInput criarProdutoInput) {
         try {
-            Produto produto;
-            produto = new Produto(criarProdutoInput.nome(), criarProdutoInput.valor(), criarProdutoInput.descricao(), criarProdutoInput.categoria(), criarProdutoInput.quantidade()).criaProduto();
-            produto.setImagens(criarProdutoInput.imagens());
+            List<ImagemModel> imagemModels = criarProdutoInput.imagens().stream()
+                    .map(imagem -> new ImagemModel(imagem.uuid(), imagem.nome(), imagem.url()))
+                    .collect(Collectors.toList());
+
+            Produto produto = new Produto(
+                    criarProdutoInput.nome(),
+                    criarProdutoInput.valor(),
+                    criarProdutoInput.descricao(),
+                    criarProdutoInput.categoria(),
+                    criarProdutoInput.quantidade(),
+                    imagemModels)
+                    .criaProduto();
+
             this.criaProdutoOutput = new CriaProdutoOutput(
                     this.criaProdutoRepository.criaProduto(produto),
                     new OutputStatus(201, "Created", "Produto criado")

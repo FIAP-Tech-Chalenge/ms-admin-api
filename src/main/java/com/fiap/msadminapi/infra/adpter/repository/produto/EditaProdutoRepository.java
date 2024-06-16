@@ -20,7 +20,13 @@ public class EditaProdutoRepository implements EditaProdutoInterface {
         if (produtoExistente == null) {
             throw new ProdutoNaoEncontradoException("Produto with UUID " + uuid + " not found.");
         }
-        produtoRepository.save(new ProdutoModel(produto.getUuid(), produto.getNome(), produto.getValor(), produto.getDescricao(), produto.getCategoria(), produto.getQuantidade()));
+        produtoRepository.save(new ProdutoModel(
+                produto.getNome(),
+                produto.getValor(),
+                produto.getDescricao(),
+                produto.getCategoria(),
+                produto.getQuantidade(),
+                produto.getImagens()));
     }
 
 }

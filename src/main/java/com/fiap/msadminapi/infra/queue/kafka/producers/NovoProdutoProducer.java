@@ -19,7 +19,7 @@ public class NovoProdutoProducer extends KafkaSenderConfig implements NovoProdut
     public void send(ProdutoOutput produtoOutput){
         try {
             ObjectNode jsonNode = objectMapper.createObjectNode();
-            jsonNode.put("produto_id", produtoOutput.getUuid().toString());
+            jsonNode.put("produto_uuid", produtoOutput.getUuid().toString());
             jsonNode.put("produto_nome", produtoOutput.getNome());
             jsonNode.put("produto_valor", produtoOutput.getValor());
             jsonNode.put("produto_descricao", produtoOutput.getDescricao());

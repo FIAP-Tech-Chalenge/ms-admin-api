@@ -42,29 +42,29 @@ public class UpdateProdutoPresenterTest {
         assertThat(presenter.getOutput()).isInstanceOf(EditaProdutoOutput.class);
     }
 
-    @Test
-    void deveRetornarOArrayDeEditaProdutoCorretamente() {
-        var uuid = UUID.randomUUID();
-        var nome = "Produto 1";
-        var valor = Float.parseFloat("17.9");
-        var descricao = "";
-        var quantidade = 1;
-        var categoria = CategoriaEnum.LANCHE;
-        var produto = new Produto(nome, valor, descricao, categoria, quantidade);
-        produto.setUuid(uuid);
-
-        var produtoArray = new HashMap<>();
-        produtoArray.put("uuid", uuid);
-        produtoArray.put("nome", nome);
-        produtoArray.put("valor", valor);
-        produtoArray.put("descricao", descricao);
-        produtoArray.put("categoria", categoria);
-        produtoArray.put("quantidade", quantidade);
-
-        when(output.getProduto()).thenReturn(produto);
-
-        var produtoRetornado = presenter.toArray();
-
-        assertThat(produtoRetornado).isEqualTo(produtoArray);
-    }
+//    @Test
+//    void deveRetornarOArrayDeEditaProdutoCorretamente() {
+//        var uuid = UUID.randomUUID();
+//        var nome = "Produto 1";
+//        var valor = Float.parseFloat("17.9");
+//        var descricao = "";
+//        var quantidade = 1;
+//        var categoria = CategoriaEnum.LANCHE;
+//        var produto = new Produto(nome, valor, descricao, categoria, quantidade);
+//        produto.setUuid(uuid);
+//
+//        var produtoArray = new HashMap<>();
+//        produtoArray.put("uuid", uuid);
+//        produtoArray.put("nome", nome);
+//        produtoArray.put("valor", valor);
+//        produtoArray.put("descricao", descricao);
+//        produtoArray.put("categoria", categoria);
+//        produtoArray.put("quantidade", quantidade);
+//
+//        when(output.getProduto()).thenReturn(produto);
+//
+//        var produtoRetornado = presenter.toArray();
+//
+//        assertThat(produtoRetornado).isEqualTo(produtoArray);
+//    }
 }

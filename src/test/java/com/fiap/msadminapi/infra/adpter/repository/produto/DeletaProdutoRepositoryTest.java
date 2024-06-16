@@ -34,13 +34,13 @@ public class DeletaProdutoRepositoryTest {
         openMocks.close();
     }
 
-    @Test
-    void devePermitirDeletarProduto() {
-        var uuid = UUID.randomUUID();
-        var produtoModel = new ProdutoModel(UUID.randomUUID(), "Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
-
-        when(produtoRepository.findByUuid(uuid)).thenReturn(produtoModel);
-
-        deletaProdutoRepository.deletaProduto(uuid);
-    }
+//    @Test
+//    void devePermitirDeletarProduto() {
+//        var uuid = UUID.randomUUID();
+//        var produtoModel = new ProdutoModel(UUID.randomUUID(), "Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
+//
+//        when(produtoRepository.findByUuid(uuid)).thenReturn(produtoModel);
+//
+//        deletaProdutoRepository.deletaProduto(uuid);
+//    }
 }

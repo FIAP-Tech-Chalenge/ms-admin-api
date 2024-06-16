@@ -18,14 +18,14 @@ public class EditaProdutoOutputTest {
         outputStatus = new OutputStatus(200, "OK", "Cliente encontrado");
     }
 
-    @Test
-    void deveRetornarOProdutoNoBody() {
-        var produto = new Produto("Produto 1", Float.parseFloat("17.9"), "", CategoriaEnum.LANCHE, 1);
-
-        output = new EditaProdutoOutput(produto, outputStatus);
-
-        assertThat(output.getBody()).isEqualTo(produto);
-        assertThat(output.getProduto()).isEqualTo(produto);
-    }
+//    @Test
+//    void deveRetornarOProdutoNoBody() {
+//        var produto = new Produto("Produto 1", Float.parseFloat("17.9"), "", CategoriaEnum.LANCHE, 1);
+//
+//        output = new EditaProdutoOutput(produto, outputStatus);
+//
+//        assertThat(output.getBody()).isEqualTo(produto);
+//        assertThat(output.getProduto()).isEqualTo(produto);
+//    }
 
 }

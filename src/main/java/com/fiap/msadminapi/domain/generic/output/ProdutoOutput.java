@@ -1,7 +1,7 @@
 package com.fiap.msadminapi.domain.generic.output;
 
-import com.fiap.msadminapi.domain.entity.produto.Imagem;
 import com.fiap.msadminapi.domain.enums.produto.CategoriaEnum;
+import com.fiap.msadminapi.infra.model.ImagemModel;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.Getter;
@@ -20,9 +20,9 @@ public class ProdutoOutput implements OutputInterface{
     @Enumerated(EnumType.STRING)
     private final CategoriaEnum categoria;
     private final Integer quantidade;
-    private final List<Imagem> imagens;
+    private final List<ImagemModel> imagens;
 
-    public ProdutoOutput(UUID uuid, String nome, Float valor, String descricao, CategoriaEnum categoria, Integer quantidade, List<Imagem> imagens) {
+    public ProdutoOutput(UUID uuid, String nome, Float valor, String descricao, CategoriaEnum categoria, Integer quantidade, List<ImagemModel> imagens) {
         this.uuid = uuid;
         this.nome = nome;
         this.valor = valor;

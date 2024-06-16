@@ -1,4 +1,6 @@
 package com.fiap.msadminapi.application.produtos.store.requests;
 
-public record ImagemItem(String nome, String url) {
+import java.util.UUID;
+
+public record ImagemItem(UUID uuid, String nome, String url) {
 }

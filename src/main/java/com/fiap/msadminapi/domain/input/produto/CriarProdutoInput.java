@@ -7,6 +7,7 @@ import com.fiap.msadminapi.domain.enums.produto.CategoriaEnum;
 import java.util.Date;
 import java.util.List;
 
+
 public record CriarProdutoInput(
         String nome,
         Float valor,
@@ -16,4 +17,5 @@ public record CriarProdutoInput(
         Date dataCriacao,
         List<Imagem> imagens
 ) {
+
 }
