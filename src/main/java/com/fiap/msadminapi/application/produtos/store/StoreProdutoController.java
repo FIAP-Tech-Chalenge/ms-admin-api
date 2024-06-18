@@ -43,7 +43,7 @@ public class StoreProdutoController {
         List<Imagem> imagens = new ArrayList<>();
 
         for (ImagemItem imagemItem : criarProdutoRequest.imagens()) {
-            imagens.add(new Imagem(imagemItem.uuid(), imagemItem.nome(), imagemItem.url()));
+            imagens.add(new Imagem(imagemItem.id(), imagemItem.nome(), imagemItem.url()));
         }
 
         OutputInterface outputInterface = getOutputInterface(criarProdutoRequest, imagens);

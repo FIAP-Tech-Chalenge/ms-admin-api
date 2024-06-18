@@ -1,5 +1,6 @@
 package com.fiap.msadminapi.domain.useCase.produto;
 
+import com.fiap.msadminapi.domain.entity.produto.Imagem;
 import com.fiap.msadminapi.domain.entity.produto.Produto;
 import com.fiap.msadminapi.domain.exception.produto.NomeNaoPodeSerVazioException;
 import com.fiap.msadminapi.domain.exception.produto.ValorDoProdutoMenorQueZeroException;
@@ -28,8 +29,8 @@ public class CriaProdutoUseCase {
 
     public void execute(CriarProdutoInput criarProdutoInput) {
         try {
-            List<ImagemModel> imagemModels = criarProdutoInput.imagens().stream()
-                    .map(imagem -> new ImagemModel(imagem.uuid(), imagem.nome(), imagem.url()))
+            List<Imagem> imagemModels = criarProdutoInput.imagens().stream()
+                    .map(imagem -> new Imagem(imagem.id(), imagem.nome(), imagem.url()))
                     .collect(Collectors.toList());
 
             Produto produto = new Produto(
@@ -38,7 +39,8 @@ public class CriaProdutoUseCase {
                     criarProdutoInput.descricao(),
                     criarProdutoInput.categoria(),
                     criarProdutoInput.quantidade(),
-                    imagemModels)
+                    imagemModels
+            )
                     .criaProduto();
 
             this.criaProdutoOutput = new CriaProdutoOutput(

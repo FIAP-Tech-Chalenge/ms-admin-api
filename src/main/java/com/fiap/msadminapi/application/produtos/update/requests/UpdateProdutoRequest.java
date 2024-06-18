@@ -1,5 +1,6 @@
 package com.fiap.msadminapi.application.produtos.update.requests;
 
+import com.fiap.msadminapi.domain.entity.produto.Imagem;
 import com.fiap.msadminapi.domain.enums.produto.CategoriaEnum;
 import com.fiap.msadminapi.infra.model.ImagemModel;
 
@@ -13,6 +14,6 @@ public record UpdateProdutoRequest(
         CategoriaEnum categoria,
         Integer quantidade,
         Date dataCriacao,
-        List<ImagemModel> imagens) {
+        List<Imagem> imagens) {
 
 }

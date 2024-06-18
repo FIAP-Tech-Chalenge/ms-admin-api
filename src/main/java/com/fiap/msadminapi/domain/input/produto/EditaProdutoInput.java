@@ -1,5 +1,6 @@
 package com.fiap.msadminapi.domain.input.produto;
 
+import com.fiap.msadminapi.domain.entity.produto.Imagem;
 import com.fiap.msadminapi.domain.enums.produto.CategoriaEnum;
 import com.fiap.msadminapi.infra.model.ImagemModel;
 
@@ -13,7 +14,7 @@ public record EditaProdutoInput(
         CategoriaEnum categoria,
         Integer quantidade,
         Date dataCriacao,
-        List<ImagemModel> imagens
+        List<Imagem> imagens
 ) {
 
 }

@@ -12,7 +12,7 @@ public class ImagemModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "uuid")
-    private UUID uuid;
+    private Long id;
 
     @Column(name = "nome")
     public String nome;
@@ -24,10 +24,9 @@ public class ImagemModel {
     @JoinColumn(name = "produto_uuid")
     public ProdutoModel produto;
 
-    public ImagemModel(UUID uuid, String nome, String url) {
-        this.uuid = uuid;
+    public ImagemModel(Long id, String nome, String url) {
+        this.id = id;
         this.nome = nome;
         this.url = url;
     }
-
 }

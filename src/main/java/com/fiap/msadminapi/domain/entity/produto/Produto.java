@@ -14,8 +14,6 @@ import lombok.Setter;
 import java.util.List;
 import java.util.UUID;
 
-
-
 @Getter
 @Setter
 public class Produto {
@@ -26,10 +24,9 @@ public class Produto {
     @Enumerated(EnumType.STRING)
     private CategoriaEnum categoria;
     private Integer quantidade;
-    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ImagemModel> imagens;
+    private List<Imagem> imagens;
 
-    public Produto(String nome, Float valor, String descricao, CategoriaEnum categoria, Integer quantidade, List<ImagemModel> imagens) {
+    public Produto(String nome, Float valor, String descricao, CategoriaEnum categoria, Integer quantidade, List<Imagem> imagens) {
         this.nome = nome;
         this.valor = valor;
         this.descricao = descricao;
