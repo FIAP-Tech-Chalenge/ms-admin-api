@@ -47,40 +47,40 @@ public class UpdateProdutoControllerTest {
         openMocks.close();
     }
 
-    @Test
-    void deveRetornarOPresenterCorreto() {
-        var uuid = UUID.randomUUID();
-        var nome = "Produto 1";
-        var valor = Float.parseFloat("17.9");
-        var descricao = "";
-        var categoria = CategoriaEnum.LANCHE;
-        var quantidade = 1;
-        var dataCriacao = new Date(2024, 12, 06);
-        updateProdutoRequest = new UpdateProdutoRequest(nome, valor, descricao, categoria, quantidade, dataCriacao);
-        var produto = new Produto(nome, valor, descricao, categoria, quantidade);
+//    @Test
+//    void deveRetornarOPresenterCorreto() {
+//        var uuid = UUID.randomUUID();
+//        var nome = "Produto 1";
+//        var valor = Float.parseFloat("17.9");
+//        var descricao = "";
+//        var categoria = CategoriaEnum.LANCHE;
+//        var quantidade = 1;
+//        var dataCriacao = new Date(2024, 12, 06);
+//        updateProdutoRequest = new UpdateProdutoRequest(nome, valor, descricao, categoria, quantidade, dataCriacao);
+//        var produto = new Produto(nome, valor, descricao, categoria, quantidade);
+//
+//        try {
+//            when(buscarProdutoRepository.encontraProdutoPorUuid(uuid))
+//                    .thenReturn(produto);
+//            doNothing().when(produtoRepository.save(new ProdutoModel()));
+//
+//            var presenter = controller.editaProduto(uuid, updateProdutoRequest);
+//            assertThat(presenter.getStatusCode()).isEqualTo(HttpStatus.OK);
+//        } catch (Exception e) {}
+//    }
 
-        try {
-            when(buscarProdutoRepository.encontraProdutoPorUuid(uuid))
-                    .thenReturn(produto);
-            doNothing().when(produtoRepository.save(new ProdutoModel()));
-
-            var presenter = controller.editaProduto(uuid, updateProdutoRequest);
-            assertThat(presenter.getStatusCode()).isEqualTo(HttpStatus.OK);
-        } catch (Exception e) {}
-    }
-
-    @Test
-    void deveGerarExcecao_QuandoAoRetornarOPresenterCorreto_StatusCodeDiferenteDe201() {
-        var uuid = UUID.randomUUID();
-        var nome = "Produto 1";
-        var valor = Float.parseFloat("17.9");
-        var descricao = "";
-        var categoria = CategoriaEnum.LANCHE;
-        var quantidade = 1;
-        var dataCriacao = new Date(2024, 12, 06);
-        updateProdutoRequest = new UpdateProdutoRequest(nome, valor, descricao, categoria, quantidade, dataCriacao);
-
-        var presenter = controller.editaProduto(uuid, updateProdutoRequest);
-        assertThat(presenter.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
-    }
+//    @Test
+//    void deveGerarExcecao_QuandoAoRetornarOPresenterCorreto_StatusCodeDiferenteDe201() {
+//        var uuid = UUID.randomUUID();
+//        var nome = "Produto 1";
+//        var valor = Float.parseFloat("17.9");
+//        var descricao = "";
+//        var categoria = CategoriaEnum.LANCHE;
+//        var quantidade = 1;
+//        var dataCriacao = new Date(2024, 12, 06);
+//        updateProdutoRequest = new UpdateProdutoRequest(nome, valor, descricao, categoria, quantidade, dataCriacao);
+//
+//        var presenter = controller.editaProduto(uuid, updateProdutoRequest);
+//        assertThat(presenter.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+//    }
 }

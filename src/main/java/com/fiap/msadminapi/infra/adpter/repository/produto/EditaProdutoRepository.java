@@ -3,11 +3,14 @@ package com.fiap.msadminapi.infra.adpter.repository.produto;
 import com.fiap.msadminapi.domain.entity.produto.Produto;
 import com.fiap.msadminapi.domain.exception.produto.ProdutoNaoEncontradoException;
 import com.fiap.msadminapi.domain.gateway.produto.EditaProdutoInterface;
+import com.fiap.msadminapi.infra.model.ImagemModel;
 import com.fiap.msadminapi.infra.model.ProdutoModel;
 import com.fiap.msadminapi.infra.repository.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @RequiredArgsConstructor
@@ -20,7 +23,18 @@ public class EditaProdutoRepository implements EditaProdutoInterface {
         if (produtoExistente == null) {
             throw new ProdutoNaoEncontradoException("Produto with UUID " + uuid + " not found.");
         }
-        produtoRepository.save(new ProdutoModel(produto.getUuid(), produto.getNome(), produto.getValor(), produto.getDescricao(), produto.getCategoria(), produto.getQuantidade()));
+        List<ImagemModel> listImages = produto.getImagens().stream()
+                .map(imagem -> new ImagemModel())
+                .collect(Collectors.toList());
+        produtoRepository.save(new ProdutoModel(
+                produto.getNome(),
+                produto.getValor(),
+                produto.getDescricao(),
+                produto.getCategoria(),
+                produto.getQuantidade(),
+                listImages
+            )
+        );
     }
 
 }

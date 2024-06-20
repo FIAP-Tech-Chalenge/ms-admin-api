@@ -5,8 +5,8 @@ import com.fiap.msadminapi.domain.enums.produto.CategoriaEnum;
 import com.fiap.msadminapi.domain.exception.produto.NomeNaoPodeSerVazioException;
 import com.fiap.msadminapi.domain.exception.produto.ValorDoProdutoMenorQueZeroException;
 import com.fiap.msadminapi.domain.input.produto.EditaProdutoInput;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import com.fiap.msadminapi.infra.model.ImagemModel;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,8 +14,6 @@ import lombok.Setter;
 import java.util.List;
 import java.util.UUID;
 
-
-@Data
 @Getter
 @Setter
 public class Produto {
@@ -28,16 +26,19 @@ public class Produto {
     private Integer quantidade;
     private List<Imagem> imagens;
 
-    public Produto(String nome, Float valor, String descricao, CategoriaEnum categoria, Integer quantidade) {
+    public Produto(String nome, Float valor, String descricao, CategoriaEnum categoria, Integer quantidade, List<Imagem> imagens) {
         this.nome = nome;
         this.valor = valor;
         this.descricao = descricao;
         this.categoria = categoria;
         this.quantidade = quantidade;
+        this.imagens = imagens;
     }
 
     public Produto criaProduto() throws NomeNaoPodeSerVazioException, ValorDoProdutoMenorQueZeroException {
-        return new CriaProdutoValidation().validaEntidade(this);
+        Produto produto = new CriaProdutoValidation().validaEntidade(this);
+        this.setUuid(getUuid());
+        return produto;
     }
 
     public void atualizaProduto(EditaProdutoInput editaProdutoInput) throws NomeNaoPodeSerVazioException, ValorDoProdutoMenorQueZeroException {
@@ -46,6 +47,7 @@ public class Produto {
         this.setDescricao(editaProdutoInput.descricao());
         this.setCategoria(editaProdutoInput.categoria());
         this.setQuantidade(editaProdutoInput.quantidade());
+        this.setImagens(editaProdutoInput.imagens());
         new CriaProdutoValidation().validaEntidade(this);
     }
 }

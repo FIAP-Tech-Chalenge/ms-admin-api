@@ -28,6 +28,7 @@ public class GetProdutoPresenter implements PresenterInterface {
             List<Map<String, Object>> produtoImagensMapList = new ArrayList<>();
             for (Imagem imagem : this.buscaProdutoOutput.getProduto().getImagens()) {
                 Map<String, Object> produtoImagemMap = new HashMap<>();
+                produtoImagemMap.put("id", imagem.id());
                 produtoImagemMap.put("nome", imagem.nome());
                 produtoImagemMap.put("url", imagem.url());
                 produtoImagensMapList.add(produtoImagemMap);

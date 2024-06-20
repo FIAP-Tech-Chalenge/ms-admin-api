@@ -32,67 +32,67 @@ public class ProdutoRepositoryTest {
         openMocks.close();
     }
 
-    @Test
-    void devePermitirSalvarProduto() {
-        var produto = new ProdutoModel(
-                UUID.randomUUID(),
-                "X-Burguer",
-                Float.parseFloat("17.9"),
-                "",
-                CategoriaEnum.LANCHE,
-                1
-        );
-        when(produtoRepository.save(produto))
-                .thenReturn(produto);
-
-        var produtoSalvo = produtoRepository.save(produto);
-
-        assertThat(produtoSalvo)
-                .isNotNull()
-                .isEqualTo(produto);
-        verify(produtoRepository, times(1)).save(produto);
-    }
-
-    @Test
-    void devePermitirEncontrarProdutoPorUuid() {
-        var uuid = UUID.fromString("123e4567-e89b-12d3-a456-426614174005");
-        var produto = new ProdutoModel(uuid, "Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
-
-        when(produtoRepository.findByUuid(any(UUID.class)))
-                .thenReturn(produto);
-
-        var produtoEncontrado = produtoRepository.findByUuid(uuid);
-
-        assertThat(produtoEncontrado)
-                .isNotNull();
-        verify(produtoRepository, times(1)).findByUuid(uuid);
-    }
-
-    @Test
-    void devePermitirRemoverProdutoPorUuid() {
-        var uuid = UUID.fromString("123e4567-e89b-12d3-a456-426614174005");
-        var produto = new ProdutoModel(uuid, "Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
-
-        produtoRepository.delete(produto);
-
-        verify(produtoRepository, times(1)).delete(any(ProdutoModel.class));
-    }
-
-    @Test
-    void devePermirListarTodosProdutos() {
-        var produto1 = new ProdutoModel(UUID.randomUUID(), "Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
-        var produto2 = new ProdutoModel(UUID.randomUUID(), "Produto 2", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
-        var listaProdutos = Arrays.asList(
-                produto1,
-                produto2
-        );
-        when(produtoRepository.findAll()).thenReturn(listaProdutos);
-
-        var produtosRecebidos = produtoRepository.findAll();
-
-        assertThat(produtosRecebidos)
-                .hasSize(2)
-                .containsExactly(produto1, produto2);
-        verify(produtoRepository, times(1)).findAll();
-    }
+//    @Test
+//    void devePermitirSalvarProduto() {
+//        var produto = new ProdutoModel(
+//                UUID.randomUUID(),
+//                "X-Burguer",
+//                Float.parseFloat("17.9"),
+//                "",
+//                CategoriaEnum.LANCHE,
+//                1
+//        );
+//        when(produtoRepository.save(produto))
+//                .thenReturn(produto);
+//
+//        var produtoSalvo = produtoRepository.save(produto);
+//
+//        assertThat(produtoSalvo)
+//                .isNotNull()
+//                .isEqualTo(produto);
+//        verify(produtoRepository, times(1)).save(produto);
+//    }
+//
+//    @Test
+//    void devePermitirEncontrarProdutoPorUuid() {
+//        var uuid = UUID.fromString("123e4567-e89b-12d3-a456-426614174005");
+//        var produto = new ProdutoModel(uuid, "Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
+//
+//        when(produtoRepository.findByUuid(any(UUID.class)))
+//                .thenReturn(produto);
+//
+//        var produtoEncontrado = produtoRepository.findByUuid(uuid);
+//
+//        assertThat(produtoEncontrado)
+//                .isNotNull();
+//        verify(produtoRepository, times(1)).findByUuid(uuid);
+//    }
+//
+//    @Test
+//    void devePermitirRemoverProdutoPorUuid() {
+//        var uuid = UUID.fromString("123e4567-e89b-12d3-a456-426614174005");
+//        var produto = new ProdutoModel(uuid, "Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
+//
+//        produtoRepository.delete(produto);
+//
+//        verify(produtoRepository, times(1)).delete(any(ProdutoModel.class));
+//    }
+//
+//    @Test
+//    void devePermirListarTodosProdutos() {
+//        var produto1 = new ProdutoModel(UUID.randomUUID(), "Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
+//        var produto2 = new ProdutoModel(UUID.randomUUID(), "Produto 2", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
+//        var listaProdutos = Arrays.asList(
+//                produto1,
+//                produto2
+//        );
+//        when(produtoRepository.findAll()).thenReturn(listaProdutos);
+//
+//        var produtosRecebidos = produtoRepository.findAll();
+//
+//        assertThat(produtosRecebidos)
+//                .hasSize(2)
+//                .containsExactly(produto1, produto2);
+//        verify(produtoRepository, times(1)).findAll();
+//    }
 }

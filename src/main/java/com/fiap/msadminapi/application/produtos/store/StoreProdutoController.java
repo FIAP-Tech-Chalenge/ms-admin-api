@@ -12,10 +12,12 @@ import com.fiap.msadminapi.domain.output.produto.CriaProdutoOutput;
 import com.fiap.msadminapi.domain.presenters.cliente.produto.StoreProdutoPresenter;
 import com.fiap.msadminapi.domain.useCase.produto.CriaProdutoUseCase;
 import com.fiap.msadminapi.infra.adpter.repository.produto.CriaProtutoRepository;
+import com.fiap.msadminapi.infra.queue.kafka.producers.NovoProdutoProducer;
 import com.fiap.msadminapi.infra.repository.ProdutoImagensRepository;
 import com.fiap.msadminapi.infra.repository.ProdutoRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,12 +34,16 @@ public class StoreProdutoController {
     private final ProdutoRepository produtoRepository;
     private final ProdutoImagensRepository produtoImagensRepository;
 
+    @Value("${spring.kafka.producer.bootstrap-servers}")
+    private String servers;
+
     @PostMapping
     @Operation(tags = {"admin"})
     public ResponseEntity<Object> criaProduto(@RequestBody StoreProdutoRequest criarProdutoRequest) {
         List<Imagem> imagens = new ArrayList<>();
+
         for (ImagemItem imagemItem : criarProdutoRequest.imagens()) {
-            imagens.add(new Imagem(imagemItem.nome(), imagemItem.url()));
+            imagens.add(new Imagem(imagemItem.id(), imagemItem.nome(), imagemItem.url()));
         }
 
         OutputInterface outputInterface = getOutputInterface(criarProdutoRequest, imagens);
@@ -50,7 +56,7 @@ public class StoreProdutoController {
     }
 
     private OutputInterface getOutputInterface(StoreProdutoRequest criarProdutoRequest, List<Imagem> imagens) {
-        CriarProdutoInput criarProdutoInput = new CriarProdutoInput(
+        CriarProdutoInput criaProdutoInput = new CriarProdutoInput(
                 criarProdutoRequest.nome(),
                 criarProdutoRequest.valor(),
                 criarProdutoRequest.descricao(),
@@ -59,8 +65,12 @@ public class StoreProdutoController {
                 criarProdutoRequest.dataCriacao(),
                 imagens
         );
-        CriaProdutoUseCase useCase = new CriaProdutoUseCase(new CriaProtutoRepository(produtoRepository, produtoImagensRepository));
-        useCase.execute(criarProdutoInput);
+        CriaProdutoUseCase useCase = new CriaProdutoUseCase(
+                        new CriaProtutoRepository(produtoRepository,
+                        produtoImagensRepository),
+                        new NovoProdutoProducer(servers)
+                        );
+        useCase.execute(criaProdutoInput);
         return useCase.getCriaProdutoOutput();
     }
 }

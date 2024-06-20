@@ -3,6 +3,7 @@ package com.fiap.msadminapi.domain.presenters.cliente.produto;
 import com.fiap.msadminapi.domain.entity.produto.Imagem;
 import com.fiap.msadminapi.domain.generic.presenter.PresenterInterface;
 import com.fiap.msadminapi.domain.output.produto.CriaProdutoOutput;
+import com.fiap.msadminapi.infra.model.ImagemModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;

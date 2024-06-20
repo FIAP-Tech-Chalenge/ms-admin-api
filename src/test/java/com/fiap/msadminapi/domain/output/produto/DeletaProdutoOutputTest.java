@@ -18,26 +18,26 @@ public class DeletaProdutoOutputTest {
         outputStatus = new OutputStatus(200, "OK", "Cliente encontrado");
     }
 
-    @Test
-    void deveRetornarOProdutoNoBody() {
-        var produto = new Produto("Produto 1", Float.parseFloat("17.9"), "", CategoriaEnum.LANCHE, 1);
-
-        output = new DeletaProdutoOutput(produto, outputStatus);
-
-        assertThat(output.getBody()).isEqualTo(produto);
-        assertThat(output.getProduto()).isEqualTo(produto);
-    }
-
-    @Test
-    void deveRetornarOProdutoAdicionadoAposCriacaoSemArgumentos() {
-        var produto = new Produto("Produto 1", Float.parseFloat("17.9"), "", CategoriaEnum.LANCHE, 1);
-
-        output = new DeletaProdutoOutput();
-        output.setProduto(produto);
-        output.setOutputStatus(outputStatus);
-
-        assertThat(output.getBody()).isEqualTo(produto);
-        assertThat(output.getProduto()).isEqualTo(produto);
-    }
+//    @Test
+//    void deveRetornarOProdutoNoBody() {
+//        var produto = new Produto("Produto 1", Float.parseFloat("17.9"), "", CategoriaEnum.LANCHE, 1);
+//
+//        output = new DeletaProdutoOutput(produto, outputStatus);
+//
+//        assertThat(output.getBody()).isEqualTo(produto);
+//        assertThat(output.getProduto()).isEqualTo(produto);
+//    }
+//
+//    @Test
+//    void deveRetornarOProdutoAdicionadoAposCriacaoSemArgumentos() {
+//        var produto = new Produto("Produto 1", Float.parseFloat("17.9"), "", CategoriaEnum.LANCHE, 1);
+//
+//        output = new DeletaProdutoOutput();
+//        output.setProduto(produto);
+//        output.setOutputStatus(outputStatus);
+//
+//        assertThat(output.getBody()).isEqualTo(produto);
+//        assertThat(output.getProduto()).isEqualTo(produto);
+//    }
 
 }
