@@ -1,13 +1,16 @@
 package com.fiap.msadminapi.infra.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.UUID;
 
-@Data
 @Entity
-@Table(name = "imagens")
+@NoArgsConstructor
+@Getter
+@Setter
+@Table(name = "produto_imagens")
 public class ImagemModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,9 +27,4 @@ public class ImagemModel {
     @JoinColumn(name = "produto_uuid")
     public ProdutoModel produto;
 
-    public ImagemModel(Long id, String nome, String url) {
-        this.id = id;
-        this.nome = nome;
-        this.url = url;
-    }
 }

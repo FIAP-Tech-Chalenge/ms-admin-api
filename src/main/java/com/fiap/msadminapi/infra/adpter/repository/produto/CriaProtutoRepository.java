@@ -5,7 +5,7 @@ import com.fiap.msadminapi.domain.entity.produto.Imagem;
 import com.fiap.msadminapi.domain.entity.produto.Produto;
 import com.fiap.msadminapi.domain.gateway.produto.CriarProdutoInterface;
 
-import com.fiap.msadminapi.infra.model.ProdutoImagemModel;
+import com.fiap.msadminapi.infra.model.ImagemModel;
 import com.fiap.msadminapi.infra.model.ProdutoModel;
 import com.fiap.msadminapi.infra.repository.ProdutoImagensRepository;
 import com.fiap.msadminapi.infra.repository.ProdutoRepository;
@@ -22,16 +22,18 @@ public class CriaProtutoRepository implements CriarProdutoInterface {
     private final ProdutoRepository produtoRepository;
     private final ProdutoImagensRepository produtoImagemRepository;
 
-    private static List<ProdutoImagemModel> getProdutoImagemModels(Produto produto) {
-        List<ProdutoImagemModel> produtoImagens = new ArrayList<>();
+    private static List<ImagemModel> getProdutoImagemModels(Produto produto, ProdutoModel produtoModel) {
+        List<ImagemModel> produtoImagens = new ArrayList<>();
 
         for (Imagem imagem : produto.getImagens()) {
+            Long id = imagem.id();
             String nome = imagem.nome();
             String url = imagem.url();
-            ProdutoImagemModel produtoImagem = new ProdutoImagemModel();
-            produtoImagem.setProdutoUuid(produto.getUuid());
+            ImagemModel produtoImagem = new ImagemModel();
+            produtoImagem.setId(id);
             produtoImagem.setNome(nome);
             produtoImagem.setUrl(url);
+            produtoImagem.setProduto(produtoModel); // Adicione esta linha
             produtoImagens.add(produtoImagem);
         }
         return produtoImagens;
@@ -50,7 +52,7 @@ public class CriaProtutoRepository implements CriarProdutoInterface {
         this.produtoRepository.save(produtoModel);
         if (produto.getImagens() != null && !produto.getImagens().isEmpty()) {
             produto.setUuid(produtoModel.getUuid());
-            List<ProdutoImagemModel> produtoImagens = getProdutoImagemModels(produto);
+            List<ImagemModel> produtoImagens = getProdutoImagemModels(produto, produtoModel);
             produtoImagemRepository.saveAll(produtoImagens);
             List<Imagem> listImages = produtoImagens.stream()
                     .map(imagem -> new Imagem(imagem.getId(), imagem.getNome(), imagem.getUrl()))

@@ -1,6 +1,5 @@
 package com.fiap.msadminapi.infra.adpter.repository.produto;
 
-import com.fiap.msadminapi.domain.entity.produto.Imagem;
 import com.fiap.msadminapi.domain.entity.produto.Produto;
 import com.fiap.msadminapi.domain.exception.produto.ProdutoNaoEncontradoException;
 import com.fiap.msadminapi.domain.gateway.produto.EditaProdutoInterface;
@@ -25,7 +24,7 @@ public class EditaProdutoRepository implements EditaProdutoInterface {
             throw new ProdutoNaoEncontradoException("Produto with UUID " + uuid + " not found.");
         }
         List<ImagemModel> listImages = produto.getImagens().stream()
-                .map(imagem -> new ImagemModel(imagem.id(), imagem.nome(), imagem.url()))
+                .map(imagem -> new ImagemModel())
                 .collect(Collectors.toList());
         produtoRepository.save(new ProdutoModel(
                 produto.getNome(),

@@ -24,7 +24,7 @@ public class ProdutoModel {
     @Enumerated(EnumType.STRING)
     private CategoriaEnum categoria;
     private Integer quantidade;
-    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ImagemModel> imagens;
 
     public ProdutoModel(String nome, Float valor, String descricao, CategoriaEnum categoria, Integer quantidade, List<ImagemModel> imagens) {
