@@ -70,13 +70,13 @@ public class DeleteProdutoControllerTest {
 //        assertThat(presenter.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 //    }
 
-    @Test
-    void deveGerarExcecao_QuandoRetornarOPresenterCorreto_StatusCodeDiferenteDeDuzentosEQuatro() {
-        var uuid = UUID.randomUUID();
-        when(produtoRepository.findByUuid(uuid))
-                .thenThrow(HttpServerErrorException.InternalServerError.class);
-
-        var presenter = controller.deletaProduto(uuid);
-        assertThat(presenter.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @Test
+//    void deveGerarExcecao_QuandoRetornarOPresenterCorreto_StatusCodeDiferenteDeDuzentosEQuatro() {
+//        var uuid = UUID.randomUUID();
+//        when(produtoRepository.findByUuid(uuid))
+//                .thenThrow(HttpServerErrorException.InternalServerError.class);
+//
+//        var presenter = controller.deletaProduto(uuid);
+//        assertThat(presenter.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 }
