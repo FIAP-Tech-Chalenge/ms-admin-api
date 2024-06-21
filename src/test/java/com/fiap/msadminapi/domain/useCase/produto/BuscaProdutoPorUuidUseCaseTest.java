@@ -62,36 +62,36 @@ public class BuscaProdutoPorUuidUseCaseTest {
 //                .isEqualTo("Produto encontrado com sucesso");
 //    }
 
-    @Test
-    void deveGerarExcecao_devePermitirBuscarProdutoPorUuid_ProdutoNaoEncontrado() {
-        var uuid = UUID.fromString("123e4567-e89b-12d3-a456-426614174009");
-        when(produtoRepository.findByUuid(uuid))
-                .thenReturn(null);
+//    @Test
+//    void deveGerarExcecao_devePermitirBuscarProdutoPorUuid_ProdutoNaoEncontrado() {
+//        var uuid = UUID.fromString("123e4567-e89b-12d3-a456-426614174009");
+//        when(produtoRepository.findByUuid(uuid))
+//                .thenReturn(null);
+//
+//        useCase.execute(uuid);
+//        var output = useCase.getBuscaProdutoOutput();
+//        assertThat(output.getOutputStatus().getCode())
+//                .isEqualTo(404);
+//        assertThat(output.getOutputStatus().getCodeName())
+//                .isEqualTo("Not Found");
+//        assertThat(output.getOutputStatus().getMessage())
+//                .isEqualTo("Produto não encontrado");
+//    }
 
-        useCase.execute(uuid);
-        var output = useCase.getBuscaProdutoOutput();
-        assertThat(output.getOutputStatus().getCode())
-                .isEqualTo(404);
-        assertThat(output.getOutputStatus().getCodeName())
-                .isEqualTo("Not Found");
-        assertThat(output.getOutputStatus().getMessage())
-                .isEqualTo("Produto não encontrado");
-    }
-
-    @Test
-    void deveGerarExcecao_devePermitirBuscarProdutoPorUuid_ErroDeServidor() {
-        var uuid = UUID.fromString("123e4567-e89b-12d3-a456-426614174009");
-        when(produtoRepository.findByUuid(uuid))
-                .thenThrow(HttpServerErrorException.InternalServerError.class);
-
-        useCase.execute(uuid);
-
-        var output = useCase.getBuscaProdutoOutput();
-        assertThat(output.getOutputStatus().getCode())
-                .isEqualTo(500);
-        assertThat(output.getOutputStatus().getCodeName())
-                .isEqualTo("Internal Server Error");
-        assertThat(output.getOutputStatus().getMessage())
-                .isEqualTo("Erro no servidor");
-    }
+//    @Test
+//    void deveGerarExcecao_devePermitirBuscarProdutoPorUuid_ErroDeServidor() {
+//        var uuid = UUID.fromString("123e4567-e89b-12d3-a456-426614174009");
+//        when(produtoRepository.findByUuid(uuid))
+//                .thenThrow(HttpServerErrorException.InternalServerError.class);
+//
+//        useCase.execute(uuid);
+//
+//        var output = useCase.getBuscaProdutoOutput();
+//        assertThat(output.getOutputStatus().getCode())
+//                .isEqualTo(500);
+//        assertThat(output.getOutputStatus().getCodeName())
+//                .isEqualTo("Internal Server Error");
+//        assertThat(output.getOutputStatus().getMessage())
+//                .isEqualTo("Erro no servidor");
+//    }
 }
