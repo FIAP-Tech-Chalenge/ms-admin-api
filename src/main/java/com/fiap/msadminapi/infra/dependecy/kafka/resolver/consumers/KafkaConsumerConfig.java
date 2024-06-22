@@ -23,13 +23,13 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, servers);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "produto"); // Change to your group ID
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "cliente"); // Change to your group ID
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest"); // or "latest"
         return props;
     }
 
     @Bean
-    public BlockingQueue<Map.Entry<Long, Double>> produtoDataQueue() {
+    public BlockingQueue<Map.Entry<Long, Double>> clienteDataQueue() {
         return new LinkedBlockingQueue<>();
     }
 }
