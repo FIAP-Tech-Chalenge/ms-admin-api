@@ -6,6 +6,8 @@ import com.fiap.msadminapi.domain.generic.output.OutputStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class EditaProdutoOutputTest {
@@ -18,14 +20,14 @@ public class EditaProdutoOutputTest {
         outputStatus = new OutputStatus(200, "OK", "Cliente encontrado");
     }
 
-//    @Test
-//    void deveRetornarOProdutoNoBody() {
-//        var produto = new Produto("Produto 1", Float.parseFloat("17.9"), "", CategoriaEnum.LANCHE, 1);
-//
-//        output = new EditaProdutoOutput(produto, outputStatus);
-//
-//        assertThat(output.getBody()).isEqualTo(produto);
-//        assertThat(output.getProduto()).isEqualTo(produto);
-//    }
+    @Test
+    void deveRetornarOProdutoNoBody() {
+        var produto = new Produto("Produto 1", Float.parseFloat("17.9"), "", CategoriaEnum.LANCHE, 1, List.of());
+
+        output = new EditaProdutoOutput(produto, outputStatus);
+
+        assertThat(output.getBody()).isEqualTo(produto);
+        assertThat(output.getProduto()).isEqualTo(produto);
+    }
 
 }

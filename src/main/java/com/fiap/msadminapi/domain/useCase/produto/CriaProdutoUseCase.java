@@ -43,8 +43,9 @@ public class CriaProdutoUseCase {
             )
                     .criaProduto();
 
+            this.criaProdutoRepository.criaProduto(produto);
             this.criaProdutoOutput = new CriaProdutoOutput(
-                    this.criaProdutoRepository.criaProduto(produto),
+                    produto,
                     new OutputStatus(201, "Created", "Produto criado")
             );
 

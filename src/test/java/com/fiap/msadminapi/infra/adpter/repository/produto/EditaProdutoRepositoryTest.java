@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.List;
 import java.util.UUID;
 
 import static org.mockito.Mockito.when;
@@ -35,34 +36,34 @@ public class EditaProdutoRepositoryTest {
     void tearDown() throws Exception {
         openMocks.close();
     }
-//
-//    @Test
-//    void devePermitirEditarProduto() {
-//        var uuid = UUID.randomUUID();
-//        var produto = new Produto("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 2);
-//        var produtoModel = new ProdutoModel(UUID.randomUUID(), "Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
-//
-//        when(produtoRepository.findByUuid(uuid)).thenReturn(produtoModel);
-//
-//        try {
-//            editaProdutoRepository.editaProduto(produto, uuid);
-//        } catch (ProdutoNaoEncontradoException e) {
-//            Assertions.assertThat(e.getMessage()).isEqualTo("Produto with UUID " + uuid + " not found.");
-//        }
-//    }
-//
-//    @Test
-//    void deveGerarExececao_QuandoPermitirEditarProduto_ProdutoNaoEncontrado() {
-//        var uuid = UUID.randomUUID();
-//        var produto = new Produto("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 2);
-//
-//        when(produtoRepository.findByUuid(uuid)).thenReturn(null);
-//
-//        try {
-//            editaProdutoRepository.editaProduto(produto, uuid);
-//        } catch (ProdutoNaoEncontradoException e) {
-//            Assertions.assertThat(e.getMessage()).isEqualTo("Produto with UUID " + uuid + " not found.");
-//        }
-//    }
+
+    @Test
+    void devePermitirEditarProduto() {
+        var uuid = UUID.randomUUID();
+        var produto = new Produto("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 2, List.of());
+        var produtoModel = new ProdutoModel("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100, List.of());
+
+        when(produtoRepository.findByUuid(uuid)).thenReturn(produtoModel);
+
+        try {
+            editaProdutoRepository.editaProduto(produto, uuid);
+        } catch (ProdutoNaoEncontradoException e) {
+            Assertions.assertThat(e.getMessage()).isEqualTo("Produto with UUID " + uuid + " not found.");
+        }
+    }
+
+    @Test
+    void deveGerarExececao_QuandoPermitirEditarProduto_ProdutoNaoEncontrado() {
+        var uuid = UUID.randomUUID();
+        var produto = new Produto("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 2, List.of());
+
+        when(produtoRepository.findByUuid(uuid)).thenReturn(null);
+
+        try {
+            editaProdutoRepository.editaProduto(produto, uuid);
+        } catch (ProdutoNaoEncontradoException e) {
+            Assertions.assertThat(e.getMessage()).isEqualTo("Produto with UUID " + uuid + " not found.");
+        }
+    }
 
 }

@@ -20,28 +20,28 @@ public class BuscaTodosProdutoOutputTest {
         outputStatus = new OutputStatus(200, "OK", "Cliente encontrado");
     }
 
-//    @Test
-//    void deveRetornarOProdutoNoBody() {
-//        var produto = new Produto("Produto 1", Float.parseFloat("17.9"), "", CategoriaEnum.LANCHE, 1);
-//        var listProdutos = List.of(produto);
-//
-//        output = new BuscaTodosProdutoOutput(listProdutos, outputStatus);
-//
-//        assertThat(output.getBody()).isEqualTo(listProdutos);
-//        assertThat(output.getListProdutos()).isEqualTo(listProdutos);
-//    }
-//
-//    @Test
-//    void deveRetornarOPedidoAdicionadoAposCriacaoSemArgumentos() {
-//        var produto = new Produto("Produto 1", Float.parseFloat("17.9"), "", CategoriaEnum.LANCHE, 1);
-//        var listProdutos = List.of(produto);
-//
-//        output = new BuscaTodosProdutoOutput();
-//        output.setListProdutos(listProdutos);
-//        output.setOutputStatus(outputStatus);
-//
-//        assertThat(output.getBody()).isEqualTo(listProdutos);
-//        assertThat(output.getListProdutos()).isEqualTo(listProdutos);
-//    }
+    @Test
+    void deveRetornarOProdutoNoBody() {
+        var produto = new Produto("Produto 1", Float.parseFloat("17.9"), "", CategoriaEnum.LANCHE, 1, List.of());
+        var listProdutos = List.of(produto);
+
+        output = new BuscaTodosProdutoOutput(listProdutos, outputStatus);
+
+        assertThat(output.getBody()).isEqualTo(listProdutos);
+        assertThat(output.getListProdutos()).isEqualTo(listProdutos);
+    }
+
+    @Test
+    void deveRetornarOPedidoAdicionadoAposCriacaoSemArgumentos() {
+        var produto = new Produto("Produto 1", Float.parseFloat("17.9"), "", CategoriaEnum.LANCHE, 1, List.of());
+        var listProdutos = List.of(produto);
+
+        output = new BuscaTodosProdutoOutput();
+        output.setListProdutos(listProdutos);
+        output.setOutputStatus(outputStatus);
+
+        assertThat(output.getBody()).isEqualTo(listProdutos);
+        assertThat(output.getListProdutos()).isEqualTo(listProdutos);
+    }
 
 }

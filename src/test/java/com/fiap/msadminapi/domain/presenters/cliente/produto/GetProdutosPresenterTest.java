@@ -43,31 +43,33 @@ public class GetProdutosPresenterTest {
         assertThat(outputRetornado).isInstanceOf(BuscaTodosProdutoOutput.class);
     }
 
-//    @Test
-//    void devePermitirRetornarOArrayCorreto() {
-//        var uuid = UUID.randomUUID();
-//        var quantidade = 1;
-//        var categoria = CategoriaEnum.LANCHE;
-//        var valor = Float.parseFloat("17.9");
-//        var descricao = "";
-//        var nome = "Produto 1";
-//        var produto = new Produto(nome, valor, descricao, categoria, quantidade);
-//        produto.setUuid(uuid);
-//
-//        var produtoArray = new HashMap<>();
-//        produtoArray.put("uuid", uuid.toString());
-//        produtoArray.put("nome", nome);
-//        produtoArray.put("descricao", descricao);
-//        produtoArray.put("categoria", categoria);
-//        produtoArray.put("quantidade", quantidade);
-//
-//        var listaProdutosArray = new HashMap<>();
-//        listaProdutosArray.put("produtos", List.of(produtoArray));
-//
-//        when(output.getListProdutos()).thenReturn(List.of(produto));
-//
-//        var produtosRetornados = presenter.toArray();
-//        assertThat(produtosRetornados).isEqualTo(listaProdutosArray);
-//    }
+    @Test
+    void devePermitirRetornarOArrayCorreto() {
+        var uuid = UUID.randomUUID();
+        var quantidade = 1;
+        var categoria = CategoriaEnum.LANCHE;
+        var valor = Float.parseFloat("17.9");
+        var descricao = "";
+        var nome = "Produto 1";
+        var produto = new Produto(nome, valor, descricao, categoria, quantidade, List.of());
+        produto.setUuid(uuid);
+
+        var produtoArray = new HashMap<>();
+        produtoArray.put("uuid", uuid.toString());
+        produtoArray.put("nome", nome);
+        produtoArray.put("descricao", descricao);
+        produtoArray.put("categoria", categoria);
+        produtoArray.put("quantidade", quantidade);
+        produtoArray.put("valor", valor);
+        produtoArray.put("imagens", List.of());
+
+        var listaProdutosArray = new HashMap<>();
+        listaProdutosArray.put("produtos", List.of(produtoArray));
+
+        when(output.getListProdutos()).thenReturn(List.of(produto));
+
+        var produtosRetornados = presenter.toArray();
+        assertThat(produtosRetornados).isEqualTo(listaProdutosArray);
+    }
 
 }

@@ -15,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.client.HttpServerErrorException;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -55,30 +56,51 @@ public class DeletaProdutoUseCaseTest {
         assertThat(useCase.getProdutoInterface()).isInstanceOf(BuscaProdutoInterface.class);
     }
 
+    @Test
+    void devePermitirDeletarProduto() {
+        var uuid = UUID.fromString("74d8c418-4001-7004-a6a8-8265b4a2c496");
+        var produto = new Produto("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100, List.of());
+        try {
+            when(produtoInterface.encontraProdutoPorUuid(uuid))
+                    .thenReturn(produto);
+            doNothing().when(deletarProduto).deletaProduto(uuid);
 
-//    @Test
-//    void deveGerarExcecao_QuandoDeletarProduto_ProdutoNaoEncontrado() {
-//        var uuid = UUID.fromString("74d8c418-4001-7004-a6a8-8265b4a2c496");
-//        var produto = new Produto("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
-//
-//        try {
-//            when(produtoInterface.encontraProdutoPorUuid(uuid))
-//                    .thenThrow(ProdutoNaoEncontradoException.class);
-//            doNothing().when(deletarProduto).deletaProduto(uuid);
-//
-//            useCase.execute(uuid);
-//
-//            var output = useCase.getDeletaProdutoOutput();
-//            assertThat(output.getOutputStatus().getCode())
-//                    .isEqualTo(404);
-//            assertThat(output.getOutputStatus().getCodeName())
-//                    .isEqualTo("Not Found");
-//            assertThat(output.getOutputStatus().getMessage())
-//                    .isEqualTo("Produto não encontrado");
-//        } catch (ProdutoNaoEncontradoException e) {
-//            assertThat(e.getMessage()).isEqualTo("Produto não encontrado");
-//        }
-//    }
+            useCase.execute(uuid);
+
+            var output = useCase.getDeletaProdutoOutput();
+            assertThat(output.getOutputStatus().getCode())
+                    .isEqualTo(204);
+            assertThat(output.getOutputStatus().getCodeName())
+                    .isEqualTo("No content");
+            assertThat(output.getOutputStatus().getMessage())
+                    .isEqualTo("Produto deletado com sucesso");
+        } catch (ProdutoNaoEncontradoException e) {
+            assertThat(e.getMessage()).isEqualTo("Produto não encontrado");
+        }
+    }
+
+    @Test
+    void deveGerarExcecao_QuandoDeletarProduto_ProdutoNaoEncontrado() {
+        var uuid = UUID.fromString("74d8c418-4001-7004-a6a8-8265b4a2c496");
+
+        try {
+            when(produtoInterface.encontraProdutoPorUuid(uuid))
+                    .thenThrow(ProdutoNaoEncontradoException.class);
+            doNothing().when(deletarProduto).deletaProduto(uuid);
+
+            useCase.execute(uuid);
+
+            var output = useCase.getDeletaProdutoOutput();
+            assertThat(output.getOutputStatus().getCode())
+                    .isEqualTo(404);
+            assertThat(output.getOutputStatus().getCodeName())
+                    .isEqualTo("Not Found");
+            assertThat(output.getOutputStatus().getMessage())
+                    .isEqualTo("Produto não encontrado");
+        } catch (ProdutoNaoEncontradoException e) {
+            assertThat(e.getMessage()).isEqualTo("Produto não encontrado");
+        }
+    }
 
     @Test
     void deveGerarExcecao_QuandoDeletarProduto_ErroServidor() {

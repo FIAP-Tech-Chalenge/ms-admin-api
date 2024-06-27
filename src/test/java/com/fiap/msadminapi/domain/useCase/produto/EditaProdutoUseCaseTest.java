@@ -23,6 +23,7 @@ import org.springframework.web.client.HttpServerErrorException;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -64,70 +65,70 @@ public class EditaProdutoUseCaseTest {
         assertThat(useCase.getEditaProduto()).isInstanceOf(EditaProdutoInterface.class);
         assertThat(useCase.getProdutoInterface()).isInstanceOf(BuscaProdutoInterface.class);
     }
-//
-//    @Test
-//    void devePermitirEditarProduto() {
-//        var uuid = UUID.randomUUID();
-//        var produtoInput = new EditaProdutoInput("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100, new Date(2024,6,1));
-//        var produtoModel = new ProdutoModel(UUID.randomUUID(), "Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
-//        var produto = new Produto("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
-//
-//        try {
-//            when(buscaProdutoInterface.encontraProdutoPorUuid(uuid))
-//                    .thenReturn(produto);
-//            when(produtoRepository.save(produtoModel))
-//                    .thenReturn(produtoModel);
-//            doNothing().when(editaProdutoInterface).editaProduto(produto, uuid);
-//
-//            useCase.execute(produtoInput, uuid);
-//
-//            var output = useCase.getEditaProdutoOutput();
-//            assertThat(output.getOutputStatus().getCode())
-//                    .isEqualTo(200);
-//            assertThat(output.getOutputStatus().getCodeName())
-//                    .isEqualTo("OK");
-//            assertThat(output.getOutputStatus().getMessage())
-//                    .isEqualTo("Produto editado com sucesso");
-//            assertThat(output.getBody())
-//                    .isInstanceOf(Produto.class);
-//            assertThat(output.getBody())
-//                    .isEqualTo(produto);
-//        } catch (ProdutoNaoEncontradoException e) {
-//            assertThat(e.getMessage()).isEqualTo("Produto não encontrado");
-//        }
-//    }
 
-//    @Test
-//    void deveGerarExcecao_QuandoEditarProduto_ProdutoNaoEncontrado() {
-//        var uuid = UUID.randomUUID();
-//        var produtoInput = new EditaProdutoInput("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100, new Date(2024,6,1));
-//
-//        try {
-//            when(buscaProdutoInterface.encontraProdutoPorUuid(uuid))
-//                    .thenThrow(ProdutoNaoEncontradoException.class);
-//
-//            useCase.execute(produtoInput, uuid);
-//
-//        } catch (ProdutoNaoEncontradoException e) {
-//            assertThat(e.getMessage()).isEqualTo("Produto não encontrado");
-//        }
-//    }
+    @Test
+    void devePermitirEditarProduto() {
+        var uuid = UUID.randomUUID();
+        var produtoInput = new EditaProdutoInput("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100, new Date(2024,6,1), List.of());
+        var produtoModel = new ProdutoModel("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100, List.of());
+        var produto = new Produto("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100, List.of());
 
-//    @Test
-//    void deveGerarExcecao_QuandoEditarProduto_ErroServidor() {
-//        var uuid = UUID.randomUUID();
-//        var produtoInput = new EditaProdutoInput("Produto 1", Float.parseFloat("-10"), "Descricao 1", CategoriaEnum.LANCHE, 100, new Date(2024,6,1));
-//        when(produtoRepository.findByUuid(uuid))
-//                .thenThrow(HttpServerErrorException.InternalServerError.class);
-//
-//        useCase.execute(produtoInput, uuid);
-//
-//        var output = useCase.getEditaProdutoOutput();
-//        assertThat(output.getOutputStatus().getCode())
-//                .isEqualTo(500);
-//        assertThat(output.getOutputStatus().getCodeName())
-//                .isEqualTo("Internal Server Error");
-//        assertThat(output.getOutputStatus().getMessage())
-//                .isEqualTo("Erro no servidor");
-//    }
+        try {
+            when(buscaProdutoInterface.encontraProdutoPorUuid(uuid))
+                    .thenReturn(produto);
+            when(produtoRepository.save(produtoModel))
+                    .thenReturn(produtoModel);
+            doNothing().when(editaProdutoInterface).editaProduto(produto, uuid);
+
+            useCase.execute(produtoInput, uuid);
+
+            var output = useCase.getEditaProdutoOutput();
+            assertThat(output.getOutputStatus().getCode())
+                    .isEqualTo(200);
+            assertThat(output.getOutputStatus().getCodeName())
+                    .isEqualTo("OK");
+            assertThat(output.getOutputStatus().getMessage())
+                    .isEqualTo("Produto editado com sucesso");
+            assertThat(output.getBody())
+                    .isInstanceOf(Produto.class);
+            assertThat(output.getBody())
+                    .isEqualTo(produto);
+        } catch (ProdutoNaoEncontradoException e) {
+            assertThat(e.getMessage()).isEqualTo("Produto não encontrado");
+        }
+    }
+
+    @Test
+    void deveGerarExcecao_QuandoEditarProduto_ProdutoNaoEncontrado() {
+        var uuid = UUID.randomUUID();
+        var produtoInput = new EditaProdutoInput("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100, new Date(2024,6,1), List.of());
+
+        try {
+            when(buscaProdutoInterface.encontraProdutoPorUuid(uuid))
+                    .thenThrow(ProdutoNaoEncontradoException.class);
+
+            useCase.execute(produtoInput, uuid);
+
+        } catch (ProdutoNaoEncontradoException e) {
+            assertThat(e.getMessage()).isEqualTo("Produto não encontrado");
+        }
+    }
+
+    @Test
+    void deveGerarExcecao_QuandoEditarProduto_ErroServidor() {
+        var uuid = UUID.randomUUID();
+        var produtoInput = new EditaProdutoInput("Produto 1", Float.parseFloat("-10"), "Descricao 1", CategoriaEnum.LANCHE, 100, new Date(2024,6,1), List.of());
+        when(produtoRepository.findByUuid(uuid))
+                .thenThrow(HttpServerErrorException.InternalServerError.class);
+
+        useCase.execute(produtoInput, uuid);
+
+        var output = useCase.getEditaProdutoOutput();
+        assertThat(output.getOutputStatus().getCode())
+                .isEqualTo(500);
+        assertThat(output.getOutputStatus().getCodeName())
+                .isEqualTo("Internal Server Error");
+        assertThat(output.getOutputStatus().getMessage())
+                .isEqualTo("Erro no servidor");
+    }
 }

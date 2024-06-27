@@ -3,6 +3,11 @@ package com.fiap.msadminapi.application.produtos.all;
 import com.fiap.msadminapi.application.pedidos.AcompanharPedidoController;
 import com.fiap.msadminapi.domain.entity.produto.Produto;
 import com.fiap.msadminapi.domain.enums.produto.CategoriaEnum;
+import com.fiap.msadminapi.domain.gateway.produto.BuscaProdutoInterface;
+import com.fiap.msadminapi.domain.generic.output.OutputError;
+import com.fiap.msadminapi.domain.generic.output.OutputInterface;
+import com.fiap.msadminapi.domain.generic.output.OutputStatus;
+import com.fiap.msadminapi.domain.output.produto.BuscaProdutoOutput;
 import com.fiap.msadminapi.domain.useCase.pedido.BuscaPedidoPorUuidUseCase;
 import com.fiap.msadminapi.domain.useCase.produto.BuscaTodosProdutosUseCase;
 import com.fiap.msadminapi.infra.adpter.repository.produto.BuscarProdutoRepository;
@@ -30,7 +35,6 @@ public class GetProdutosControllerTest {
     @Mock
     BuscarProdutoRepository buscaProdutoRepository;
 
-    @Mock
     BuscaTodosProdutosUseCase useCase;
 
     GetProdutosController controller;
@@ -60,14 +64,5 @@ public class GetProdutosControllerTest {
 
         assertThat(presenter.getBody()).isEqualTo(produtos);
     }
-
-//    @Test
-//    void deveGerarExcecao_QuandoRetornarOPresenterCorreto_StatusCodeDiferenteDeDuzentos() {
-//        when(produtoRepository.findAll())
-//                .thenThrow(HttpServerErrorException.InternalServerError.class);
-//
-//        var presenter = controller.getAllProdutos();
-//        assertThat(presenter.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
-//    }
 
 }

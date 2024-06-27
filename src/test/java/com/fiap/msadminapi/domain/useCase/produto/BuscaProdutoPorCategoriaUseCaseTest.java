@@ -14,6 +14,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.web.client.HttpServerErrorException;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -48,46 +49,33 @@ class BuscaProdutoPorCategoriaUseCaseTest {
         assertThat(useCase.getProdutoRepository()).isInstanceOf(BuscarProdutoRepository.class);
     }
 
-//    @Test
-//    void devePermitirBuscarProdutoPorCategoria() {
-//
-//        var categoria = "LANCHE";
-//        var produto1Uuid = UUID.randomUUID();
-//        var produto2Uuid = UUID.randomUUID();
-//
-//        var produtoModel1 = new ProdutoModel(produto1Uuid, "Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
-//        var produtoModel2 = new ProdutoModel(produto2Uuid, "Produto 2", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
-//        var listaModelProdutos = Arrays.asList(
-//                produtoModel1,
-//                produtoModel2
-//        );
-//
-//        var produto1 = new Produto("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
-//        var produto2 = new Produto("Produto 2", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100);
-//        produto1.setUuid(produto1Uuid);
-//        produto2.setUuid(produto2Uuid);
-//
-//        var listaProdutos = Arrays.asList(
-//                produto1,
-//                produto2
-//        );
-//
-//        when(produtoRepository.findByCategoria(any(CategoriaEnum.class)))
-//                .thenReturn(listaModelProdutos);
-//
-//        useCase.execute(categoria);
-//
-//        var output = useCase.getBuscaProdutoOutput();
-//        assertThat(output.getBody())
-//                .isEqualTo(listaProdutos);
-//        assertThat(output).isInstanceOf(BuscaTodosProdutoOutput.class);
-//        assertThat(output.getOutputStatus().getCode())
-//                .isEqualTo(200);
-//        assertThat(output.getOutputStatus().getCodeName())
-//                .isEqualTo("OK");
-//        assertThat(output.getOutputStatus().getMessage())
-//                .isEqualTo("Lista de produtos");
-//    }
+    @Test
+    void devePermitirBuscarProdutoPorCategoria() {
+
+        var categoria = "LANCHE";
+
+        var produtoModel1 = new ProdutoModel("Produto 1", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100, List.of());
+        var produtoModel2 = new ProdutoModel("Produto 2", Float.parseFloat("10"), "Descricao 1", CategoriaEnum.LANCHE, 100, List.of());
+        var listaModelProdutos = Arrays.asList(
+                produtoModel1,
+                produtoModel2
+        );
+
+        when(produtoRepository.findByCategoria(any(CategoriaEnum.class)))
+                .thenReturn(listaModelProdutos);
+
+        useCase.execute(categoria);
+
+        var output = useCase.getBuscaProdutoOutput();
+
+        assertThat(output).isInstanceOf(BuscaTodosProdutoOutput.class);
+        assertThat(output.getOutputStatus().getCode())
+                .isEqualTo(200);
+        assertThat(output.getOutputStatus().getCodeName())
+                .isEqualTo("OK");
+        assertThat(output.getOutputStatus().getMessage())
+                .isEqualTo("Lista de produtos");
+    }
 
     @Test
     void deveGerarExcecao_QuandoBuscarProdutoPorCategoria_ListaVazia() {
