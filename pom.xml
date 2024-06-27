@@ -130,6 +130,7 @@
                         <exclude>com/fiap/msadminapi/domain/output/**/*</exclude>
                         <exclude>com/fiap/msadminapi/domain/outputerror/*</exclude>
                         <exclude>com/fiap/msadminapi/infra/dependency/**/*</exclude>
+                        <exclude>com/fiap/msadminapi/infra/queue/**/*</exclude>
                     </excludes>
                 </configuration>
             </plugin>

@@ -66,10 +66,10 @@ public class StoreProdutoController {
                 imagens
         );
         CriaProdutoUseCase useCase = new CriaProdutoUseCase(
-                        new CriaProtutoRepository(produtoRepository,
-                        produtoImagensRepository),
-                        new NovoProdutoProducer(servers)
-                        );
+                new CriaProtutoRepository(produtoRepository,
+                produtoImagensRepository),
+                new NovoProdutoProducer(servers)
+        );
         useCase.execute(criaProdutoInput);
         return useCase.getCriaProdutoOutput();
     }

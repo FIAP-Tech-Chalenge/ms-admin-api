@@ -37,6 +37,9 @@ public class GetProdutosControllerTest {
 
     BuscaTodosProdutosUseCase useCase;
 
+    @Mock
+    BuscaProdutoInterface buscaProdutoInterface;
+
     GetProdutosController controller;
 
     AutoCloseable openMocks;
