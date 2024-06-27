@@ -133,6 +133,7 @@
                         <exclude>com/fiap/msadminapi/domain/outputerror/*</exclude>
                         <exclude>com/fiap/msadminapi/infra/dependency/**/*</exclude>
                         <exclude>com/fiap/msadminapi/infra/queue/**/*</exclude>
+                        <exclude>com/fiap/msadminapi/infra/dependecy/kafka/resolver/producers/*</exclude>
                     </excludes>
                 </configuration>
             </plugin>
