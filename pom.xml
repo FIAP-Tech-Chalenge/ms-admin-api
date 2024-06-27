@@ -127,6 +127,8 @@
                 </executions>
                 <configuration>
                     <excludes>
+                        <exclude>com/fiap/msadminapi/application/produtos/store/**/*</exclude>
+                        <exclude>com/fiap/msadminapi/domain/generic/**/*</exclude>
                         <exclude>com/fiap/msadminapi/domain/output/**/*</exclude>
                         <exclude>com/fiap/msadminapi/domain/outputerror/*</exclude>
                         <exclude>com/fiap/msadminapi/infra/dependency/**/*</exclude>
