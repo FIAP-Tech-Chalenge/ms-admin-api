@@ -131,8 +131,10 @@
                         <exclude>com/fiap/msadminapi/domain/generic/ouput/*</exclude>
                         <exclude>com/fiap/msadminapi/domain/output/**/*</exclude>
                         <exclude>com/fiap/msadminapi/domain/outputerror/*</exclude>
-                        <exclude>com/fiap/msadminapi/infra/dependency/**/*</exclude>
                         <exclude>com/fiap/msadminapi/infra/queue/**/*</exclude>
+                        <exclude>com/fiap/msadminapi/infra/dependency/*</exclude>
+                        <exclude>com/fiap/msadminapi/infra/dependency/jwt/*</exclude>
+                        <exclude>com/fiap/msadminapi/infra/dependency/resolvers/*</exclude>
                         <exclude>com/fiap/msadminapi/infra/dependecy/kafka/resolver/producers/*</exclude>
                     </excludes>
                 </configuration>
