@@ -11,7 +11,7 @@ services:
     depends_on:
       - postgres
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/admin
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5442/admin
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: my-secret-pw
       SPRING_PROFILES_ACTIVE: hom
@@ -23,7 +23,7 @@ services:
       POSTGRES_PASSWORD: my-secret-pw
       POSTGRES_DB: admin
     ports:
-      - "5432:5432"
+      - "5442:5432"
   kafka:
     image: confluentinc/cp-kafka:latest
     ports:
