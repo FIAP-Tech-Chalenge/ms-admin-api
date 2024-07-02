@@ -14,7 +14,6 @@ import java.util.UUID;
 @Table(name ="clientes")
 public class ClienteModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
     private String nome;
     private String cpf;
