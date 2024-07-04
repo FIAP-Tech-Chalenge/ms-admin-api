@@ -19,7 +19,6 @@ import java.util.UUID;
 @Table(name ="pedidos")
 public class PedidoModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "uuid", updatable = false, nullable = false)
     private UUID uuid;
     @Column(name = "numeropedido")
