@@ -12,8 +12,8 @@ public class KafkaConsumerResolver {
         return KafkaTopicsEnum.entrega.name();
     }
 
-    public String getPedidoConsumer() {
-        return KafkaTopicsEnum.entrega.name();
+    public String getPedidoPagoConsumer() {
+        return KafkaTopicsEnum.pedido.name();
     }
 
 }

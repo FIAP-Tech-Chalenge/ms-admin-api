@@ -1,7 +1,7 @@
 package com.fiap.msadminapi.infra.dependecy.kafka.resolver;
 
 public enum KafkaTopicsEnum {
-    pagamento,
+    pedido,
     cliente,
     produto,
     entrega
