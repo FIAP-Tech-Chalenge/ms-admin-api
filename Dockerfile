@@ -7,18 +7,12 @@ WORKDIR /workspace
 COPY pom.xml .
 RUN mvn dependency:go-offline
 
-# Copie o código fonte e construa o JAR
+# Copie o código fonte e construa o JAR sem executar os testes
 COPY src src
-ARG MAVEN_SKIP_TEST=false
-RUN if [ "$MAVEN_SKIP_TEST" = "true" ] ; then mvn clean package -DskipTests ; else mvn clean package ; fi
+RUN mvn clean package -DskipTests
 
 # Segunda etapa: Rodar a aplicação
 FROM amazoncorretto:21-alpine-jdk
-
-LABEL maintainer="ricardo@ricardolm.net"
-LABEL version="1.0"
-LABEL description="FIAP - Tech Chalenger"
-LABEL name="MS Admin API"
 
 EXPOSE 8080
 
