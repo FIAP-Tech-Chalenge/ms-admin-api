@@ -15,9 +15,6 @@
     <description>ms-admin-api</description>
     <properties>
         <java.version>21</java.version>
-        <sonar.coverage.exclusions>
-            **/src/main/java/com/fiap/msadminapi/application/produtos/store/**/*,**/src/main/java/com/fiap/msadminapi/domain/generic/**/*,**/src/main/java/com/fiap/msadminapi/domain/output/**/*,**/src/main/java/com/fiap/msadminapi/domain/outputerror/*,**/src/main/java/com/fiap/msadminapi/infra/queue/**/*,**/src/main/java/com/fiap/msadminapi/infra/dependecy/**/*
-        </sonar.coverage.exclusions>
     </properties>
     <dependencies>
         <dependency>
@@ -128,16 +125,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <excludes>
-                        <exclude>com/fiap/msadminapi/application/produtos/store/**/*</exclude>
-                        <exclude>com/fiap/msadminapi/domain/generic/**/*</exclude>
-                        <exclude>com/fiap/msadminapi/domain/output/**/*</exclude>
-                        <exclude>com/fiap/msadminapi/domain/outputerror/*</exclude>
-                        <exclude>com/fiap/msadminapi/infra/queue/**/*</exclude>
-                        <exclude>com/fiap/msadminapi/infra/dependecy/**/*</exclude>
-                    </excludes>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
