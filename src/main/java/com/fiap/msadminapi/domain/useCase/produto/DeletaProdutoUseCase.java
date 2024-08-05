@@ -10,6 +10,7 @@ import com.fiap.msadminapi.domain.generic.output.OutputError;
 import com.fiap.msadminapi.domain.generic.output.OutputInterface;
 import com.fiap.msadminapi.domain.generic.output.OutputStatus;
 import com.fiap.msadminapi.domain.output.produto.DeletaProdutoOutput;
+import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +24,7 @@ public class DeletaProdutoUseCase {
     private final BuscaProdutoInterface produtoInterface;
     private OutputInterface deletaProdutoOutput;
 
+    @Transactional
     public void execute(UUID uuid) {
         try {
             Produto produtoEntity = this.produtoInterface.encontraProdutoPorUuid(uuid);

@@ -12,7 +12,7 @@ import com.fiap.msadminapi.domain.generic.output.OutputStatus;
 import com.fiap.msadminapi.domain.generic.output.ProdutoOutput;
 import com.fiap.msadminapi.domain.input.produto.CriarProdutoInput;
 import com.fiap.msadminapi.domain.output.produto.CriaProdutoOutput;
-import com.fiap.msadminapi.infra.model.ImagemModel;
+import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +27,7 @@ public class CriaProdutoUseCase {
     private final NovoProdutoProducerInterface novoProdutoProducerInterface;
     private OutputInterface criaProdutoOutput;
 
+    @Transactional
     public void execute(CriarProdutoInput criarProdutoInput) {
         try {
             List<Imagem> imagemModels = criarProdutoInput.imagens().stream()
