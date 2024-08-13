@@ -8,11 +8,19 @@ public class PresenterResponse {
     public ResponseEntity<Object> response(PresenterInterface presenterInterface) {
         
         if (presenterInterface.getOutput().getOutputStatus().getCode() == 200) {
-            return ResponseEntity.status(HttpStatus.OK).body(presenterInterface.toArray());
+            return ResponseEntity.status(HttpStatus.OK)
+                    .header("Content-Security-Policy", "script-src 'self'")
+                    .header("Access-Control-Allow-Origin", "https://restaurante.com.br")
+                    .header("X-Frame-Options", "SAMEORIGIN")
+                    .body(presenterInterface.toArray());
         }
 
         if (presenterInterface.getOutput().getOutputStatus().getCode() == 201) {
-            return ResponseEntity.status(HttpStatus.OK).body(presenterInterface.toArray());
+            return ResponseEntity.status(HttpStatus.OK)
+                    .header("Content-Security-Policy", "script-src 'self'")
+                    .header("Access-Control-Allow-Origin", "https://restaurante.com.br")
+                    .header("X-Frame-Options", "SAMEORIGIN")
+                    .body(presenterInterface.toArray());
         }
 
         if (presenterInterface.getOutput().getOutputStatus().getCode() == 404) {
@@ -20,7 +28,11 @@ public class PresenterResponse {
         }
 
         if (presenterInterface.getOutput().getOutputStatus().getCode() == 204) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(presenterInterface.toArray());
+            return ResponseEntity.status(HttpStatus.NO_CONTENT)
+                    .header("Content-Security-Policy", "script-src 'self'")
+                    .header("Access-Control-Allow-Origin", "https://restaurante.com.br")
+                    .header("X-Frame-Options", "SAMEORIGIN")
+                    .body(presenterInterface.toArray());
         }
 
         if (presenterInterface.getOutput().getOutputStatus().getCode() == 422) {
