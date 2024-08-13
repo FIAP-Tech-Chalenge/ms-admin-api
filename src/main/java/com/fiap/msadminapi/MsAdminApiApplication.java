@@ -68,4 +68,5 @@ public class MsAdminApiApplication {
         // lógica do fallback
         logger.info("Returning fallback response");
     }
+
 }
