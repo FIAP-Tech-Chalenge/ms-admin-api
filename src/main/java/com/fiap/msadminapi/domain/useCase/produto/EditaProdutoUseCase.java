@@ -9,6 +9,7 @@ import com.fiap.msadminapi.domain.generic.output.OutputInterface;
 import com.fiap.msadminapi.domain.generic.output.OutputStatus;
 import com.fiap.msadminapi.domain.input.produto.EditaProdutoInput;
 import com.fiap.msadminapi.domain.output.produto.EditaProdutoOutput;
+import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -22,6 +23,7 @@ public class EditaProdutoUseCase {
     private final BuscaProdutoInterface produtoInterface;
     private OutputInterface editaProdutoOutput;
 
+    @Transactional
     public void execute(EditaProdutoInput editaProdutoInput, UUID uuid) {
         try {
             Produto produtoEntity = this.produtoInterface.encontraProdutoPorUuid(uuid);

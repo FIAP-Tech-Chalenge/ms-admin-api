@@ -10,6 +10,8 @@ import com.fiap.msadminapi.infra.repository.PedidoRepository;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
@@ -24,6 +26,7 @@ public class PedidoEntregueConsumer {
     private final KafkaConsumer<String, String> consumer;
     private final ObjectMapper objectMapper;
     private final PedidoRepository pedidoRepository;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public PedidoEntregueConsumer(
             Properties kafkaConsumerProperties,
@@ -40,7 +43,7 @@ public class PedidoEntregueConsumer {
             while (!Thread.currentThread().isInterrupted()) {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
                 for (ConsumerRecord<String, String> record : records) {
-                    System.out.printf("Mensagem recebida - Tópico: %s, Chave: %s, Valor: %s%n", record.topic(), record.key(), record.value());
+                    logger.info("Mensagem recebida - Tópico: %s, Chave: %s, Valor: %s%n", record.topic(), record.key(), record.value());
                     try {
                         JsonNode messageJson = objectMapper.readTree(record.value());
                         String pedidoUuid = messageJson.get("pedido_uuid").asText();
@@ -50,7 +53,7 @@ public class PedidoEntregueConsumer {
 
                         PedidoModel pedidoModel = pedidoRepository.findByUuid(UUID.fromString(pedidoUuid));
                         if (pedidoModel == null) {
-                            System.out.println("Criando o pedido");
+                            logger.info("Criando o pedido");
                             PedidoModel novoPedidoModel = new PedidoModel();
                             novoPedidoModel.setUuid(UUID.fromString(pedidoUuid));
                             novoPedidoModel.setClienteId(UUID.fromString(clienteUuid));
@@ -64,13 +67,13 @@ public class PedidoEntregueConsumer {
                         pedidoModel.setStatusPedido(StatusPedido.FINALIZADO);
                         pedidoRepository.save(pedidoModel);
                     } catch (Exception e) {
-                        System.err.println("Erro ao processar a mensagem: " + e.getMessage());
+                        logger.error("Erro ao processar a mensagem: {}", e.getMessage(), e);
                     }
                 }
             }
         } finally {
             this.consumer.close();
-            System.out.println("Consumidor Kafka fechado.");
+            logger.info("Consumidor Kafka fechado.");
         }
     }
 }

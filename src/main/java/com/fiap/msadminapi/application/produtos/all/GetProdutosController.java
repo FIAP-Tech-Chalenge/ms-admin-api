@@ -12,10 +12,9 @@ import com.fiap.msadminapi.infra.repository.ProdutoRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "https://restaurante.techchallenge.com.br", maxAge = 3600, methods = RequestMethod.GET)
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("admin/produtos")
