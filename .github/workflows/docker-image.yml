@@ -15,6 +15,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Step to check and create the VERSION file if it does not exist
+      - name: Check and create VERSION file
+        run: |
+          if [ ! -f VERSION ]; then
+            echo "1.0.0" > VERSION
+          fi
+
       # Step to read and increment the version from a file
       - name: Increment version
         id: vars
