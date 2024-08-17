@@ -154,4 +154,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: wolwer/ms-admin-api:${{ env.new_version }}
+          tags: |
+            wolwer/ms-pedido-api:${{ env.new_version }}
