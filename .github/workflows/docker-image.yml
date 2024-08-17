@@ -3,7 +3,6 @@ name: Docker Image CI
 on:
   push:
     branches: [ main ]
-    tags: [ 'v*.*.*' ]  # Adiciona trigger para tags de versão semântica
   pull_request:
     branches: [ main ]
 
@@ -15,6 +14,34 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
+      # Step to determine the next version
+      - name: Determine next version
+        id: vars
+        run: |
+          # Fetch the latest tag
+          latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+          echo "Latest tag: $latest_tag"
+
+          # Extract the major, minor, and patch numbers
+          major=$(echo $latest_tag | cut -d. -f1 | cut -dv -f2)
+          minor=$(echo $latest_tag | cut -d. -f2)
+          patch=$(echo $latest_tag | cut -d. -f3)
+
+          # Increment the patch number
+          new_patch=$((patch + 1))
+          new_version="v$major.$minor.$new_patch"
+          echo "New version: $new_version"
+
+          # Set the new version as an output
+          echo "new_version=$new_version" >> $GITHUB_ENV
+
+      - name: Create new Git tag
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag ${{ env.new_version }}
+          git push origin ${{ env.new_version }}
 
       - name: Set up JDK 21
         uses: actions/setup-java@v3
@@ -124,4 +151,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: wolwer/ms-admin-api:${{ github.ref_name }}  # Usa a tag do Git como tag da image
+          tags: wolwer/ms-admin-api:${{ env.new_version }}
