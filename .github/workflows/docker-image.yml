@@ -155,4 +155,4 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            wolwer/ms-pedido-api:${{ github.run_number }}
+            wolwer/ms-admin-api:${{ github.run_number }}
