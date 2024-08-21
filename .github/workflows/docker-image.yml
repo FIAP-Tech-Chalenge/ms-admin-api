@@ -155,4 +155,4 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            wolwer/ms-pedido-api:${{ env.new_version }}
+            wolwer/ms-pedido-api:${{ env.run_number }}
