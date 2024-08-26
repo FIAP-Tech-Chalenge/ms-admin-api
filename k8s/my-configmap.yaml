@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-configmap
+data:
+  ADMIN_DATA_HOST: "postgres-admin"
+  ADMIN_DATA_PORT: "5433"
+  ADMIN_DATA_DATABASE: "admin"
+  SPRING_PROFILES_ACTIVE: "hom"
