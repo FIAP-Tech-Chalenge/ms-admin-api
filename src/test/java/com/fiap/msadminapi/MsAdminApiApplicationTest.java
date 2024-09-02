@@ -22,7 +22,7 @@ class MsAdminApiApplicationTest {
         PedidoEntregueConsumer pedidoEntregueConsumer = Mockito.mock(PedidoEntregueConsumer.class);
         PedidoPagoConsumer pedidoPagoConsumer = Mockito.mock(PedidoPagoConsumer.class);
         circuitBreaker = new CircuitBreaker();
-        msAdminApiApplication = new MsAdminApiApplication(clienteConsumer, pedidoEntregueConsumer, pedidoPagoConsumer);
+        //msAdminApiApplication = new MsAdminApiApplication(clienteConsumer, pedidoEntregueConsumer, pedidoPagoConsumer);
     }
 
     @Test

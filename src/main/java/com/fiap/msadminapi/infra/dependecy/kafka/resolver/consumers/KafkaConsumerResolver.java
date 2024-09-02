@@ -7,6 +7,9 @@ public class KafkaConsumerResolver {
     public String getClienteConsumer() {
         return KafkaTopicsEnum.cliente.name();
     }
+    public String getClienteInativoConsumer() {
+        return KafkaTopicsEnum.clienteInativo.name();
+    }
 
     public String getPedidoEntregueConsumer() {
         return KafkaTopicsEnum.entrega.name();

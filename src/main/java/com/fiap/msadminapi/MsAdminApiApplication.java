@@ -2,6 +2,7 @@ package com.fiap.msadminapi;
 
 import com.fiap.msadminapi.infra.dependecy.cb.CircuitBreaker;
 import com.fiap.msadminapi.infra.queue.kafka.consumers.ClienteConsumer;
+import com.fiap.msadminapi.infra.queue.kafka.consumers.ClienteInativoConsumer;
 import com.fiap.msadminapi.infra.queue.kafka.consumers.PedidoEntregueConsumer;
 import com.fiap.msadminapi.infra.queue.kafka.consumers.PedidoPagoConsumer;
 import jakarta.annotation.PostConstruct;
@@ -19,17 +20,20 @@ public class MsAdminApiApplication {
     private final ClienteConsumer consumerCliente;
     private final PedidoEntregueConsumer consumerPedidoEntregue;
     private final PedidoPagoConsumer consumerPedidoPago;
+    private final ClienteInativoConsumer consumerClienteInativo;
     private final CircuitBreaker circuitBreaker = new CircuitBreaker();
 
     @Autowired
     public MsAdminApiApplication(
             ClienteConsumer consumerCliente,
             PedidoEntregueConsumer consumerPedidoEntregue,
-            PedidoPagoConsumer consumerPedidoPago
+            PedidoPagoConsumer consumerPedidoPago,
+            ClienteInativoConsumer consumerClienteInativo
     ) {
         this.consumerCliente = consumerCliente;
         this.consumerPedidoEntregue = consumerPedidoEntregue;
         this.consumerPedidoPago = consumerPedidoPago;
+        this.consumerClienteInativo = consumerClienteInativo;
     }
 
     public static void main(String[] args) {
@@ -47,6 +51,10 @@ public class MsAdminApiApplication {
 
         Thread consumerPedidoEntregaThread = new Thread(consumerPedidoEntregue::runConsumer);
         consumerPedidoEntregaThread.start();
+
+        Thread consumerClienteInativoThread = new Thread(consumerClienteInativo::runConsumer);
+        consumerClienteInativoThread.start();
+
     }
 
     public void someMethod() {
