@@ -13,6 +13,7 @@ import com.fiap.msadminapi.infra.repository.ProdutoRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,7 @@ public class DeleteProdutoController {
 
     @DeleteMapping("/{uuid}")
     @Operation(tags = {"admin"})
+    @Transactional
     public ResponseEntity<Object> deletaProduto(@PathVariable UUID uuid) {
         DeletaProdutoUseCase useCase = new DeletaProdutoUseCase(
                 new DeletaProdutoRepository(produtoRepository),

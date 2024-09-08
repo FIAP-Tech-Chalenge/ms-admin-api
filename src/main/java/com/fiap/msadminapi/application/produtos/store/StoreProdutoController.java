@@ -19,6 +19,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +40,7 @@ public class StoreProdutoController {
 
     @PostMapping
     @Operation(tags = {"admin"})
+    @Transactional
     public ResponseEntity<Object> criaProduto(@RequestBody StoreProdutoRequest criarProdutoRequest) {
         List<Imagem> imagens = new ArrayList<>();
 

@@ -15,6 +15,7 @@ import com.fiap.msadminapi.infra.repository.ProdutoRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -27,6 +28,7 @@ public class UpdateProdutoController {
 
     @PutMapping("/{uuid}")
     @Operation(tags = {"admin"})
+    @Transactional
     public ResponseEntity<Object> editaProduto(@PathVariable UUID uuid, @RequestBody UpdateProdutoRequest produtoRequest) {
         EditaProdutoUseCase useCase = getEditaProdutoUseCase(uuid, produtoRequest);
         OutputInterface outputInterface = useCase.getEditaProdutoOutput();
