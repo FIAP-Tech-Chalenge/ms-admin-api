@@ -28,7 +28,7 @@ public class GetClienteByUuidController {
     private final ClienteRepository clienteRepository;
 
     @GetMapping("/{uuid}")
-    @Operation(tags = {"admin"})
+    @Operation(summary = "Listar clientes por UUID", tags = {"admin"})
     public ResponseEntity<Object> getClienteByUuid(@PathVariable UUID uuid) throws Exception {
         GetClienteByUuidUseCase useCase = new GetClienteByUuidUseCase(new ClienteEntityRepository(this.clienteRepository));
         useCase.execute(uuid);

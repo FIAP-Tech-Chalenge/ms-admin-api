@@ -25,7 +25,7 @@ public class GetPedidosController {
     private final PedidoProdutoRepository pedidoProdutoRepository;
 
     @GetMapping("/todos-pedidos")
-    @Operation(tags = {"admin"})
+    @Operation(summary = "Listar pedidos", tags = {"admin"})
     public ResponseEntity<Object> getAllPedidos() {
         BuscaTodosPedidosUseCase useCase = new BuscaTodosPedidosUseCase(new BuscarPedidoRepository(pedidoRepository, pedidoProdutoRepository));
         useCase.execute();

@@ -26,7 +26,7 @@ public class GetProdutoController {
     private final ProdutoRepository produtoRepository;
 
     @GetMapping("/{uuid}")
-    @Operation(tags = {"admin"})
+    @Operation(summary = "Listar um produto pelo UUID", tags = {"admin"})
     public ResponseEntity<Object> getProduto(@PathVariable UUID uuid) {
         BuscaProdutoPorUuidUseCase useCase = new BuscaProdutoPorUuidUseCase(new BuscarProdutoRepository(produtoRepository));
         useCase.execute(uuid);

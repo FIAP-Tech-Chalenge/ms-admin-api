@@ -22,7 +22,7 @@ public class GetProdutosController {
     private final ProdutoRepository produtoRepository;
 
     @GetMapping
-    @Operation(tags = {"admin"})
+    @Operation(summary = "Listar todos produtos", tags = {"admin"})
     public ResponseEntity<Object> getAllProdutos() {
         BuscaTodosProdutosUseCase useCase = new BuscaTodosProdutosUseCase(new BuscarProdutoRepository(produtoRepository));
         useCase.execute();

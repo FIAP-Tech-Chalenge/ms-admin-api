@@ -39,7 +39,7 @@ public class StoreProdutoController {
     private String servers;
 
     @PostMapping
-    @Operation(tags = {"admin"})
+    @Operation(summary = "Criar produto", tags = {"admin"})
     @Transactional
     public ResponseEntity<Object> criaProduto(@RequestBody StoreProdutoRequest criarProdutoRequest) {
         List<Imagem> imagens = new ArrayList<>();

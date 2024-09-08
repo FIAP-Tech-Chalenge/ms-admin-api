@@ -27,7 +27,7 @@ public class UpdateProdutoController {
     private final ProdutoRepository produtoRepository;
 
     @PutMapping("/{uuid}")
-    @Operation(tags = {"admin"})
+    @Operation(summary = "Atualiza produto", tags = {"admin"})
     @Transactional
     public ResponseEntity<Object> editaProduto(@PathVariable UUID uuid, @RequestBody UpdateProdutoRequest produtoRequest) {
         EditaProdutoUseCase useCase = getEditaProdutoUseCase(uuid, produtoRequest);

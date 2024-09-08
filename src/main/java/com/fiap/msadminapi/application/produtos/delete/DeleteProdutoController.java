@@ -28,7 +28,7 @@ public class DeleteProdutoController {
     private final ProdutoRepository produtoRepository;
 
     @DeleteMapping("/{uuid}")
-    @Operation(tags = {"admin"})
+    @Operation(summary = "Excluir produto", tags = {"admin"})
     @Transactional
     public ResponseEntity<Object> deletaProduto(@PathVariable UUID uuid) {
         DeletaProdutoUseCase useCase = new DeletaProdutoUseCase(

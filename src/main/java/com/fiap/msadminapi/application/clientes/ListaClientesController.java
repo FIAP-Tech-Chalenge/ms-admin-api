@@ -22,7 +22,7 @@ public class ListaClientesController {
     private final ClienteRepository clienteRepository;
 
     @GetMapping("/lista")
-    @Operation(tags = {"admin"})
+    @Operation(summary = "Listar todos clientes", tags = {"admin"})
     public ResponseEntity<Object> getAllPedidos() throws Exception {
         ListaDeClientesUseCase useCase = new ListaDeClientesUseCase(new ClienteEntityRepository(this.clienteRepository));
         useCase.execute();

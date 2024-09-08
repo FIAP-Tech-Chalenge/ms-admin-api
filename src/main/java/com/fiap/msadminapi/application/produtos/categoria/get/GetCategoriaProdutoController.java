@@ -24,7 +24,7 @@ public class GetCategoriaProdutoController {
     private final ProdutoRepository produtoRepository;
 
     @GetMapping("/categoria/{categoria}")
-    @Operation(tags = {"admin"})
+    @Operation(summary = "Listar produtos por categoria", tags = {"admin"})
     public ResponseEntity<Object> getProdutoPorCategoria(@PathVariable String categoria) {
         BuscaProdutoPorCategoriaUseCase useCase = new BuscaProdutoPorCategoriaUseCase(new BuscarProdutoRepository(produtoRepository));
         useCase.execute(categoria);

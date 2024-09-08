@@ -29,7 +29,7 @@ public class AcompanharPedidoController {
     private final PedidoProdutoRepository pedidoProdutoRepository;
 
     @GetMapping("/{uuid}")
-    @Operation(tags = {"admin"})
+    @Operation(summary = "Acompanhar pedidos", tags = {"admin"})
     public ResponseEntity<Object> getPedido(@PathVariable UUID uuid) {
         BuscaPedidoPorUuidUseCase useCase = new BuscaPedidoPorUuidUseCase(new BuscarPedidoRepository(pedidoRepository, pedidoProdutoRepository));
         useCase.execute(uuid, null);
